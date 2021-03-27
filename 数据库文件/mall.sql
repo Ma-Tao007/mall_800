@@ -11,7 +11,7 @@
  Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 02/03/2021 09:02:21
+ Date: 27/03/2021 16:13:55
 */
 
 SET NAMES utf8mb4;
@@ -31,7 +31,7 @@ CREATE TABLE `address`  (
   `county` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '区/县',
   `address_detail` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '详细地址',
   PRIMARY KEY (`address_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of address
@@ -47,8 +47,7 @@ INSERT INTO `address` VALUES (19, 5, '15009299999', '庞晓君', '重庆市', '�
 INSERT INTO `address` VALUES (20, 6, '13572082079', '小陈', '青海省', '西宁市', '城北区', '呃呃呃呃呃呃呃呃呃');
 INSERT INTO `address` VALUES (21, 5, '13572082099', '陈', '四川省', '成都市', '武侯区', '烦烦烦方法');
 INSERT INTO `address` VALUES (22, 5, '13572082079', '树时', '四川省', '成都市', '锦江区', '的烦烦烦');
-INSERT INTO `address` VALUES (23, 13, '12345678912', 'bineee', '广东省', '广州市', '天河区', 'ABC');
-INSERT INTO `address` VALUES (24, 3, '15478457845', '机器人1好', '陕西省', '西安市', '未央区', '幸福大街一号');
+INSERT INTO `address` VALUES (23, 13, '17626341234', '小马哥', '陕西省', '西安市', '未央区', '恶事地址啊');
 
 -- ----------------------------
 -- Table structure for collect
@@ -59,7 +58,7 @@ CREATE TABLE `collect`  (
   `product_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`, `product_id`) USING BTREE,
   INDEX `product_id`(`product_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of collect
@@ -71,11 +70,7 @@ INSERT INTO `collect` VALUES (6, 2);
 INSERT INTO `collect` VALUES (1, 3);
 INSERT INTO `collect` VALUES (5, 3);
 INSERT INTO `collect` VALUES (5, 15);
-INSERT INTO `collect` VALUES (13, 18);
-INSERT INTO `collect` VALUES (13, 19);
 INSERT INTO `collect` VALUES (5, 45);
-INSERT INTO `collect` VALUES (13, 46);
-INSERT INTO `collect` VALUES (3, 69);
 
 -- ----------------------------
 -- Table structure for logistic_com
@@ -85,14 +80,14 @@ CREATE TABLE `logistic_com`  (
   `logistic_id` int(10) NOT NULL AUTO_INCREMENT COMMENT '物流公司id',
   `com_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '物流公司名',
   PRIMARY KEY (`logistic_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of logistic_com
 -- ----------------------------
 INSERT INTO `logistic_com` VALUES (1, '顺丰');
 INSERT INTO `logistic_com` VALUES (2, '圆通');
-INSERT INTO `logistic_com` VALUES (3, '韵达');
+INSERT INTO `logistic_com` VALUES (3, '与田');
 INSERT INTO `logistic_com` VALUES (4, '第三方');
 INSERT INTO `logistic_com` VALUES (5, '中通');
 
@@ -113,69 +108,20 @@ CREATE TABLE `order`  (
   `logistic_id` int(10) UNSIGNED NULL DEFAULT 1 COMMENT '物流公司id',
   `status` int(5) NOT NULL DEFAULT 0 COMMENT '订单状态；0--包括未发货，1--已发货，2--已签收',
   PRIMARY KEY (`order_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 52 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (1, 1, 1, 299.00, 1, 1, '2020-07-10 15:38:29', '1', '1', 1, 2);
-INSERT INTO `order` VALUES (2, 2, 2, 2.00, 2, 2, '2020-07-10 23:03:39', '2', '2', 3, 1);
-INSERT INTO `order` VALUES (3, 1, 1, 1.00, 1, 1, '2020-07-10 15:38:29', '1', '1', 1, 2);
-INSERT INTO `order` VALUES (4, 1, 1, 1.30, 2, 3, '2020-07-13 20:47:15', '1', '0', 2, 1);
-INSERT INTO `order` VALUES (5, 7, 1, 40.00, 1, 7, '2020-07-13 20:49:36', '9', NULL, 1, 0);
-INSERT INTO `order` VALUES (6, 7, 1, 40.00, 1, 7, '2020-07-13 20:49:45', '17', NULL, 1, 0);
-INSERT INTO `order` VALUES (7, 7, 1, 40.00, 1, 7, '2020-07-13 20:50:50', '18', NULL, 1, 0);
-INSERT INTO `order` VALUES (8, 7, 1, 40.00, 1, 7, '2020-07-13 20:54:26', '2', NULL, 1, 0);
-INSERT INTO `order` VALUES (9, 1, 10, 350.00, 1, 1, '2020-07-13 22:04:22', '6', NULL, 1, 0);
-INSERT INTO `order` VALUES (10, 8, 1, 3.50, 1, 8, '2020-07-13 22:04:45', '17', NULL, 1, 0);
-INSERT INTO `order` VALUES (11, 8, 6, 3.50, 1, 8, '2020-07-13 22:07:13', '6', NULL, 1, 0);
-INSERT INTO `order` VALUES (12, 2, 1, 776.00, 1, 2, '2020-07-13 22:36:10', '6', NULL, 1, 0);
-INSERT INTO `order` VALUES (13, 8, 7, 3.50, 1, 8, '2020-07-13 23:07:52', '9', NULL, 1, 0);
-INSERT INTO `order` VALUES (14, 2, 1, 776.00, 5, 3, '2020-07-14 09:02:54', '5', '0', 4, 1);
-INSERT INTO `order` VALUES (15, 3, 1, 400.00, 5, 3, '2020-07-14 09:25:34', '5', '0', 2, 1);
-INSERT INTO `order` VALUES (16, 3, 1, 400.00, 5, 3, '2020-07-14 14:20:52', '5', '0', 4, 0);
-INSERT INTO `order` VALUES (17, 2, 3, 776.00, 5, 3, '2020-07-14 14:46:36', '5', NULL, 1, 0);
-INSERT INTO `order` VALUES (18, 2, 1, 776.00, 5, 3, '2020-07-14 14:47:33', '5', NULL, 0, 0);
-INSERT INTO `order` VALUES (19, 3, 8, 400.00, 5, 3, '2020-07-14 14:47:33', '5', NULL, 1, 0);
-INSERT INTO `order` VALUES (20, 1, 1, 111.00, 3, 7, '2020-07-14 15:15:05', '55', NULL, 0, 0);
-INSERT INTO `order` VALUES (21, 17, 7, 17.00, 5, 4, '2020-07-14 15:55:26', '5', NULL, 1, 0);
-INSERT INTO `order` VALUES (25, 46, 1, 111.00, 5, 1, '2020-07-14 19:26:50', '19', NULL, 1, 0);
-INSERT INTO `order` VALUES (29, 68, 1, 100.00, 3, 2, '2021-03-01 14:48:37', '242', '0哈哈', 1, 2);
-INSERT INTO `order` VALUES (30, 68, 2, 100.00, 3, 2, '2021-03-01 15:23:44', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (31, 69, 3, 100.00, 3, 2, '2021-03-01 16:33:27', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (32, 69, 4, 100.00, 3, 2, '2021-03-01 16:54:49', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (33, 68, 3, 100.00, 3, 2, '2021-03-01 16:58:30', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (34, 68, 1, 100.00, 3, 2, '2021-03-01 16:59:42', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (35, 68, 1, 100.00, 3, 2, '2021-03-01 17:00:26', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (36, 69, 2, 100.00, 3, 2, '2021-03-01 17:00:46', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (37, 68, 1, 100.00, 3, 2, '2021-03-01 17:01:24', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (38, 69, 1, 100.00, 3, 2, '2021-03-01 17:01:33', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (39, 69, 1, 100.00, 3, 2, '2021-03-01 17:05:56', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (40, 69, 1, 100.00, 3, 2, '2021-03-01 17:08:06', '24', NULL, 1, 0);
-INSERT INTO `order` VALUES (41, 69, 1, 100.00, 3, 2, '2021-03-02 08:20:18', '陕西省西安市未央区幸福大街一号', NULL, 1, 0);
-
--- ----------------------------
--- Table structure for orderr
--- ----------------------------
-DROP TABLE IF EXISTS `orderr`;
-CREATE TABLE `orderr`  (
-  `order_id` int(11) NOT NULL,
-  `product_id` int(255) NULL DEFAULT NULL,
-  `product_num` int(255) NULL DEFAULT NULL,
-  `price` int(255) NULL DEFAULT NULL,
-  `buyer_id` int(255) NULL DEFAULT NULL,
-  `seller_id` int(255) NULL DEFAULT NULL,
-  `order_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `buyer_addr` int(255) NULL DEFAULT NULL,
-  `seller_addr` int(255) NULL DEFAULT NULL,
-  `logisitic_id` int(255) NULL DEFAULT NULL,
-  `status` int(255) NULL DEFAULT NULL,
-  PRIMARY KEY (`order_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
-
--- ----------------------------
--- Records of orderr
--- ----------------------------
+INSERT INTO `order` VALUES (44, 9, 1, 3.50, 13, 3, '2021-03-10 21:37:48', '陕西省西安市未央区恶事地址啊', NULL, 1, 2);
+INSERT INTO `order` VALUES (45, 11, 1, 4.00, 13, 3, '2021-03-11 09:14:50', '陕西省西安市未央区恶事地址啊', NULL, 1, 0);
+INSERT INTO `order` VALUES (46, 14, 1, 6999.00, 13, 3, '2021-03-11 09:14:50', '陕西省西安市未央区恶事地址啊', NULL, 1, 0);
+INSERT INTO `order` VALUES (47, 14, 1, 6999.00, 13, 3, '2021-03-12 13:52:35', '陕西省西安市未央区恶事地址啊', NULL, 1, 0);
+INSERT INTO `order` VALUES (48, 14, 1, 6999.00, 13, 3, '2021-03-12 13:52:39', '陕西省西安市未央区恶事地址啊', NULL, 1, 0);
+INSERT INTO `order` VALUES (49, 14, 1, 6999.00, 13, 3, '2021-03-12 13:53:01', '陕西省西安市未央区恶事地址啊', NULL, 1, 0);
+INSERT INTO `order` VALUES (50, 14, 1, 6999.00, 13, 3, '2021-03-12 13:53:14', '陕西省西安市未央区恶事地址啊', NULL, 1, 0);
+INSERT INTO `order` VALUES (51, 14, 1, 6999.00, 13, 3, '2021-03-12 13:54:52', '陕西省西安市未央区恶事地址啊', NULL, 1, 0);
+INSERT INTO `order` VALUES (52, 10, 1, 4.00, 13, 3, '2021-03-12 13:55:29', '陕西省西安市未央区恶事地址啊', NULL, 1, 0);
 
 -- ----------------------------
 -- Table structure for product
@@ -194,16 +140,45 @@ CREATE TABLE `product`  (
   `state` int(1) NOT NULL COMMENT '1：上架 ;  0 : 下架',
   `create_time` datetime NOT NULL COMMENT '创建时间',
   `modify_time` datetime NULL DEFAULT NULL COMMENT '修改时间',
-  `product_describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品描述',
+  `product_describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`product_id`) USING BTREE,
   INDEX `product_type`(`product_type_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 69 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES (68, 2, 1, '物理', '9e35b510-e8aa-43bd-b5ea-1a93d06b2b6f.jpg', 100.00, 95.00, 91, 9, 0, '2021-02-20 22:16:33', NULL, '2');
-INSERT INTO `product` VALUES (69, 2, 10, '22', '9e35b510-e8aa-43bd-b5ea-1a93d06b2b6f.jpg', 100.00, 22.00, 9, 12, 1, '2021-03-01 16:03:05', NULL, '22');
+INSERT INTO `product` VALUES (9, 3, 2, '钓鱼板', '1.jpg', 3.50, 3.20, 925, 18, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (10, 3, 3, '花蝶', '2.jpg', 4.00, 3.50, 1025, 4, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (11, 3, 2, '特急车', '3.jpg', 4.00, 3.50, 11320, 13, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (12, 3, 4, '画笔包', '4.jpg', 1000000.00, 5000.00, 1218, 3, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (13, 3, 3, '化妆包', '5.jpg', 7000.00, 6999.00, 131, 0, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (14, 3, 1, '魔仙棒', '6.jpg', 6999.00, 5000.00, 129, 26, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (15, 3, 1, '别墅过家家', '7.jpg', 433.00, 400.00, 1510, 16, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (16, 4, 1, '水果塑料', '8.jpg', 30.00, 25.00, 1621, 16, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (17, 4, 1, '游戏墙', '9.jpg', 17.00, 15.00, 1716, 24, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (18, 4, 1, '陀螺', '31.jpg', 40.00, 35.00, 1842, 19, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (19, 4, 1, '画纸', '11.jpg', 500.00, 466.00, 1934, 19, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (20, 4, 1, '滑翔伞', '12.jpg', 550.00, 500.00, 20354, 20, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (21, 4, 1, '形状', '13.jpg', 50.00, 49.00, 2000, 600, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (22, 4, 1, '遥控车', '14.jpg', 33.00, 30.00, 400, 400, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (23, 4, 2, '好丽友派', '15.jpg', 5.00, 4.50, 4000, 3222, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (24, 4, 1, '和田玉', '16.jpg', 350.00, 336.00, 5000, 3000, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (25, 4, 1, '发光陀螺', '17.jpg', 77.00, 70.00, 23333, 200, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (26, 4, 2, '特技车', '18.jpg', 44.00, 43.00, 5555, 55, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (27, 4, 4, '七巧板', '19.jpg', 44.00, 43.00, 5555, 55, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (28, 4, 1, '玩具枪', '20.jpg', 788.00, 755.00, 42, 33, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (29, 4, 1, '小熊', '21.jpg', 655.00, 600.00, 3888, 4332, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (30, 4, 1, '漫步机器人', '22.jpg', 65.00, 60.00, 5543, 44, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (31, 4, 1, '小水池', '23.jpg', 77.00, 70.00, 4443, 443, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (32, 4, 1, '大水池', '24.jpg', 689.00, 688.00, 232, 20, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (34, 1, 1, '色板', '25.jpg', 2.00, 2.00, 200, 0, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (35, 1, 1, '画笔', '26.jpg', 1.00, 1.00, 1, 0, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (36, 1, 1, '布偶', '27.jpg', 1.00, 1.00, 1, 0, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (37, 1, 1, '拼板', '28.jpg', 1.00, 1.00, 1, 0, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (38, 1, 1, '小汽车', '29.jpg', 1.00, 1.00, 1, 0, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (39, 1, 1, '橡皮泥', '30.jpg', 1.00, 1.00, 1, 0, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
+INSERT INTO `product` VALUES (41, 1, 1, '滑行飞机', '0.jpg', 1.00, 1.00, 1, 0, 1, '2021-02-13 10:28:09', '2021-02-19 16:45:51', NULL);
 
 -- ----------------------------
 -- Table structure for product_type
@@ -213,14 +188,15 @@ CREATE TABLE `product_type`  (
   `product_type_id` int(20) NOT NULL AUTO_INCREMENT COMMENT '货物分类id',
   `product_type_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '分类名',
   PRIMARY KEY (`product_type_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of product_type
 -- ----------------------------
-INSERT INTO `product_type` VALUES (1, '理科');
-INSERT INTO `product_type` VALUES (8, '文科');
-INSERT INTO `product_type` VALUES (10, '测试啊');
+INSERT INTO `product_type` VALUES (1, '励志');
+INSERT INTO `product_type` VALUES (2, '益智');
+INSERT INTO `product_type` VALUES (3, '男孩');
+INSERT INTO `product_type` VALUES (4, '女孩');
 
 -- ----------------------------
 -- Table structure for shopping_cart
@@ -237,8 +213,6 @@ CREATE TABLE `shopping_cart`  (
 -- ----------------------------
 -- Records of shopping_cart
 -- ----------------------------
-INSERT INTO `shopping_cart` VALUES (8, 6, 3.20, 3);
-INSERT INTO `shopping_cart` VALUES (14, 5, 5000.00, 2);
 
 -- ----------------------------
 -- Table structure for user
@@ -253,6 +227,7 @@ CREATE TABLE `user`  (
   `type` char(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户类型 0管理员 1商家 2客户',
   `sex` char(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '性别',
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(11) NULL DEFAULT 1 COMMENT '状态',
   PRIMARY KEY (`user_id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE COMMENT '用户名索引',
   UNIQUE INDEX `phone_number`(`phone_number`) USING BTREE COMMENT '手机号索引'
@@ -261,8 +236,19 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin', '00000000000', '管理员', '123456789', '0', '保密', NULL);
-INSERT INTO `user` VALUES (2, 'zhangsan', '11111111112', '张三', '123456789', '1', '女', NULL);
-INSERT INTO `user` VALUES (3, 'bineee', '12345678912', 'bineee3', '123456789', '2', '男', 'fb1652df-80bf-4bcb-987a-9924cd45672c.jpg');
+INSERT INTO `user` VALUES (1, 'oushivv', '13572082079', '陈勤', 'e10adc3949ba59abbe56e057f20f883e', '0', '男', 'a9e98914-fff7-49a1-8282-9a8da0719987.png', 1);
+INSERT INTO `user` VALUES (2, 'wojiaobaixiaobai', '13299042795', '我叫白小白', 'e10adc3949ba59abbe56e057f20f883e', '0', '男', NULL, 1);
+INSERT INTO `user` VALUES (3, 'zhangsan', '11111111112', '张三', 'e10adc3949ba59abbe56e057f20f883e', '1', '女', NULL, 1);
+INSERT INTO `user` VALUES (4, 'zhangsi', '11111111111', '张四', 'e10adc3949ba59abbe56e057f20f883e', '1', '女', NULL, 1);
+INSERT INTO `user` VALUES (5, 'wangwu', '22222222221', '王武', 'e10adc3949ba59abbe56e057f20f883e', '2', '女', 'cb4dea4d-466b-476b-a84a-bc8fe9f365f0.jpg', 1);
+INSERT INTO `user` VALUES (6, 'liuqi', '13456789', '刘七', 'e10adc3949ba59abbe56e057f20f883e', '2', '男', 'a5cff376-8926-44d3-b223-2564e2cc1c3c.JPG', 1);
+INSERT INTO `user` VALUES (7, 'admin', '00000000000', '管理员', 'e10adc3949ba59abbe56e057f20f883e', '0', '保密', NULL, 1);
+INSERT INTO `user` VALUES (8, 'admin2', '0', 'gly', 'e10adc3949ba59abbe56e057f20f883e', '0', NULL, NULL, 1);
+INSERT INTO `user` VALUES (9, 'shangjia', NULL, '商家1', 'e10adc3949ba59abbe56e057f20f883e', '1', NULL, NULL, 1);
+INSERT INTO `user` VALUES (10, '商家', NULL, '商家2', 'e10adc3949ba59abbe56e057f20f883e', '1', NULL, NULL, 1);
+INSERT INTO `user` VALUES (11, 'test', NULL, 'asp', 'e10adc3949ba59abbe56e057f20f883e', '0', '男', NULL, 1);
+INSERT INTO `user` VALUES (12, '1', '1', '1', 'e10adc3949ba59abbe56e057f20f883e', '1', '1', NULL, 1);
+INSERT INTO `user` VALUES (13, 'maker', '15056408312', '小马哥', 'e10adc3949ba59abbe56e057f20f883e', '2', '男', '6edd5f21-48b1-4d07-a422-fe6348440f2e.jpg', 1);
+INSERT INTO `user` VALUES (14, 'ha', '23231', 'dda', 'e10adc3949ba59abbe56e057f20f883e', '1', '男', NULL, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
