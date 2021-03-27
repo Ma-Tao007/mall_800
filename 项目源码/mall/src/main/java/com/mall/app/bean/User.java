@@ -13,6 +13,13 @@ public class User implements Serializable {
 	private String img;
 	private String type;
 	private String sex;
+	private Integer status;
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 	public Integer getUserId() {
 		return userId;
 	}

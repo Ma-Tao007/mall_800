@@ -78,7 +78,11 @@
 						window.location.href = "seller-index.jsp";
 					} else if (flag == '2') {
 						window.location.href = "mall/html/index.html";
-					}
+					}else if (flag == '-3') {
+                        layer.msg('用户名已被禁用，请联系管理员', {
+                            icon : 5
+                        });
+                    }
 
 				})
 

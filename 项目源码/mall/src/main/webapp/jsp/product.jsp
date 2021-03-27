@@ -415,17 +415,6 @@
 				<input type="text" name="productName" required lay-verify="required"
 					placeholder="请输入商品名称" class="layui-input">
 			</div>
-   <!--       <label class="layui-form-label">商品类别</label>
-          <div class="layui-input-inline">
-            <select name="productTypeName" id="productTypeName" lay-filter="selectProductType" lay-verify="">
-              <option value=""></option>
-            </select>
-          </div>   -->
-   <!--         <label class="layui-form-label">商品类别ID</label>
-			<div class="layui-input-inline">
-				<input type="text" name="productTypeId" required lay-verify="required"
-					placeholder="请输入商品类别ID" class="layui-input">
-			</div>-->
            <label class="layui-form-label">商品类别名称</label>
             <div class="layui-input-inline">
               <select name="productTypeName" id="productTypeName3" lay-filter="selectProductType3" lay-verify="required">
@@ -433,32 +422,6 @@
               </select>
               <input type="hidden" name="productTypeId" id="productTypeId3" class="layui-input">
             </div>
-       
-
-		</div>
-		<div class="layui-form-item">
-  <!--		<label class="layui-form-label">卖家ID</label>
-			<div class="layui-input-inline">
-				<input type="text" name="sellerId" required lay-verify=""
-					placeholder="请输入卖家ID" class="layui-input">
-			</div>  
-
-
-			<label class="layui-form-label">商品图片路径</label>
-			<div class="layui-input-inline">
-				<input type="text" name="productImage" required lay-verify="required"
-					placeholder="请输入商品图片路径" class="layui-input">
-			</div>  
-
-	<div class="layui-upload">
- 	 <button class="layui-btn" id="test1" type="button">上传图片</button>
- 	 <div class="layui-upload-list">
- 	   <img class="layui-upload-img" id="demo1">
- 	   <p id="demoText"></p>
- 	 </div>
-	</div>   -->
-
-
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">商品原价</label>

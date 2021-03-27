@@ -19,7 +19,7 @@
 		phone_number AS phoneNumber,
 		nickname,
 		sex,
-		img
+		img,status
 	FROM 
 		`user`
 	WHERE 
@@ -53,7 +53,7 @@
         nickname as nickName,
         password,
         type,
-        sex
+        sex,status
         
         from `user`
         <where>

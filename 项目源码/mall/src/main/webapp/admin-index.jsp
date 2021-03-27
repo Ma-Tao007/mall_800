@@ -33,34 +33,22 @@
 			<div class="layui-side-scroll">
 
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
-					<li class="layui-nav-item"><a class="" href="javascript:;">商品类别管理</a>
+					<li class="layui-nav-item"><a class="" href="javascript:;">商品管理</a>
 						<dl class="layui-nav-child">
 							<dd>
 								<a href="javascript:;" data-id="2" data-title="类别信息管理"
 									data-url="jsp/productType.jsp" class="site-demo-active"
 									data-type="tabAdd">类别信息管理</a>
 							</dd>
-<!-- 							<dd> -->
-<!-- 								<a href="javascript:;" data-id="3" data-title="商品信息管理" -->
-<!-- 									data-url="jsp/goodsList.jsp" class="site-demo-active" -->
-<!-- 									data-type="tabAdd">商品信息管理</a> -->
-<!-- 							</dd> -->
+							<dd>
+								<a href="javascript:;" data-id="3" data-title="商品信息管理"
+									data-url="jsp/goodsList.jsp" class="site-demo-active"
+ 									data-type="tabAdd">商品信息管理</a>
+							</dd>
 
 						</dl></li>
 
 				</ul>
-<!-- 				<ul class="layui-nav layui-nav-tree" lay-filter="test"> -->
-<!-- 					<li class="layui-nav-item"><a class="" href="javascript:;">订单信息管理</a> -->
-<!-- 						<dl class="layui-nav-child"> -->
-<!-- 							<dd> -->
-<!-- 								<a href="javascript:;" data-id="4" data-title="订单信息管理" -->
-<!-- 									data-url="jsp/order.jsp" class="site-demo-active" -->
-<!-- 									data-type="tabAdd">订单信息管理</a> -->
-<!-- 							</dd> -->
-
-<!-- 						</dl></li> -->
-
-<!-- 				</ul> -->
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
 					<li class="layui-nav-item"><a class="" href="javascript:;">物流信息管理</a>
 						<dl class="layui-nav-child">
@@ -85,19 +73,6 @@
 						</dl></li>
 
 				</ul>
-				<!-- 左侧垂直导航区域-->
-<!-- 				<ul class="layui-nav layui-nav-tree" lay-filter="test"> -->
-<!-- 					<li class="layui-nav-item"><a class="" href="javascript:;">商家操作管理</a> -->
-<!-- 						<dl class="layui-nav-child"> -->
-<!-- 							<dd> -->
-<!-- 								<a href="javascript:;" data-id="1" data-title="商品信息管理" -->
-<!-- 									data-url="jsp/product.jsp" class="site-demo-active" -->
-<!-- 									data-type="tabAdd">商品信息管理</a> -->
-<!-- 							</dd> -->
-
-<!-- 						</dl></li> -->
-
-<!-- 				</ul> -->
 			</div>
 		</div>
 

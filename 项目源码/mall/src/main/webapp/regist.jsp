@@ -119,7 +119,9 @@
                     layer.msg("用户名已存在")
                 }else{
                     layer.msg("注册成功")
-                    window.location.href = "/logout"
+                    setTimeout(function(){
+                        window.location.href = "/logout"
+                    },1500)
                 }
             })
 

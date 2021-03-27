@@ -48,7 +48,9 @@ public class UserController {
 			}      
 		}
 		User user2 = (User)SecurityUtils.getSubject().getSession().getAttribute("user");
-		System.out.println("type  "+user2.getType());
+		if(user2.getStatus()==0){
+			return "-3";
+		}
 		//String.valueOf(user.getType())
 		//System.out.println(username+"  "+password);
 		//System.out.println(user.getSex());
