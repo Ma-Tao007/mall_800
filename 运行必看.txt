@@ -1,0 +1,6 @@
+基于SSM框架的在线购物商城_毕业实习
+
+介绍
+基于springmvc、springboot、mybatis、shiro等框架构建的在线购物商城
+
+如需有偿帮助：QQ2568819232 vx 15056408321
