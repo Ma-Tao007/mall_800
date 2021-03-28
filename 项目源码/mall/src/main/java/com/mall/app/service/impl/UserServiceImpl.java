@@ -55,4 +55,9 @@ public class UserServiceImpl implements UserService {
 		user.setPassword(MD5Utils.string2MD5(user.getPassword()));
 		return userMapper.insert(user);
 	}
+
+    public void updateStatus(Integer status,Integer userid) {
+		userMapper.updateStatus(status,userid);
+
+	}
 }

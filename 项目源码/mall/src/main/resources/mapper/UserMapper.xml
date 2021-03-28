@@ -33,8 +33,11 @@
 	 update user set img=#{img}
 	 where username=#{username}
 	 </update>
-	 
-	 	<!-- 查询用户数 -->
+    <update id="updateStatus">
+		update user set status = #{status} where user_id = #{userid,jdbcType=INTEGER}
+	</update>
+
+    <!-- 查询用户数 -->
 	<select id="getCountUser" resultType="int">
 		select count(*) from user
 		<where>

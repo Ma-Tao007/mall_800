@@ -102,7 +102,16 @@
                         layer.msg("该用户已被禁用")
 						return
 					}else{
-                        layer.msg("禁用成功")
+                        $.ajax({
+                            url: '/user/updateStatus',
+                            type: 'post',
+                            data:{status:0,userid:user.userId},
+                            success: function () {
+                                layer.msg("禁用成功")
+                                table.reload('dg', {});//刷新表格
+                            }
+                        });
+
 					}
 
 				}else if(obj.event === 'open'){
@@ -111,7 +120,16 @@
                         layer.msg("该用户已启用")
                         return
                     }else{
-                        layer.msg("启用成功")
+                        $.ajax({
+                            url: '/user/updateStatus',
+                            type: 'post',
+                            data:{status:1,userid:user.userId},
+                            success: function () {
+                                layer.msg("启用成功")
+                                table.reload('dg', {});//刷新表格
+                            }
+                        });
+
                     }
 				}
 			})

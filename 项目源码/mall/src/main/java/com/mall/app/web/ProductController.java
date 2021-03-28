@@ -111,7 +111,9 @@ public class ProductController {
 		map.put("size", limit );
 		map.put("productTypeId", productTypeId);
 		User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
-		map.put("sellerId", user.getUserId());
+		if(!user.getType().equals("0")){
+			map.put("sellerId", user.getUserId());
+		}
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("code", 0 );
 		result.put("msg", "" );

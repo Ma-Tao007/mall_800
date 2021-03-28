@@ -64,6 +64,11 @@ public class UserController {
 		u.setPassword(null);
 		return  u;
 	}
+
+	@RequestMapping("/user/updateStatus")
+	public void updateStatus(Integer status,Integer userid){
+		service.updateStatus(status,userid);
+	}
 	
 	@RequestMapping("/user/updateInfo")
 	public boolean updateInfo(String nickname,String phone_number,String sex){

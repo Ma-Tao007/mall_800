@@ -82,14 +82,16 @@
 		product_describe as productDescribe
 		from product left join product_type
 		on product.product_type_id = product_type.product_type_id
-		<where>
+		where 1=1
 			
 			<if test="productTypeId!=null">
-				product.product_type_id = #{productTypeId}
+				and product.product_type_id = #{productTypeId}
 			</if>
-			and
-			seller_id = #{sellerId}
-		</where>
+		<if test="sellerId!=null">
+			and seller_id = #{sellerId}
+		</if>
+
+
 		
 		limit #{page},#{size}
 

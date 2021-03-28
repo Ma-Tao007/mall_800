@@ -353,10 +353,7 @@
 				}, {
 					field : 'modifyTime',
 					title : '修改时间'
-				},{
-					field : 'productDescribe',
-						title : '商品详情'
-					},
+				},
 					{
 					title : '操作',
 					toolbar : '#barDemo',
