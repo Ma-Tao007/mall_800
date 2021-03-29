@@ -49,5 +49,6 @@ public interface OrderService {
 	 * @return
 	 */
 	public int getOrderStatus(int orderId);
-	
+
+    Map<String, Object> getZST(Integer userId);
 }

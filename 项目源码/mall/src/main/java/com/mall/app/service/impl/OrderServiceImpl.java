@@ -16,46 +16,45 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OrderMapper orderMapper;
 
-	// ��
 	@Override
 	public boolean addOrder(Order order) {
 
 		return orderMapper.addOrder(order);
 	}
 
-	// ɾ
 	@Override
 	public boolean removeOrder(String[] oids) {
 
 		return orderMapper.removeOrder(oids);
 	}
 
-	// ��
 	@Override
 	public boolean updateOrder(Order order) {
 
 		return orderMapper.updateOrder(order);
 	}
 
-	// �鶩����Ϣ
 	@Override
 	public List<Order> listOrder(Map<String, Object> map) {
 
 		return orderMapper.listOrder(map);
 	}
 
-	// �鶩������--ĳĳ�û���������
 	@Override
 	public int getCountOrder(Map<String, Object> map) {
 
 		return orderMapper.getCountOrder(map);
 	}
 
-	// �鶩��״̬
 	@Override
 	public int getOrderStatus(int orderId) {
 		
 		return orderMapper.getOrderStatus(orderId);
 	}
 
+
+	@Override
+	public Map<String, Object> getZST(Integer userId) {
+		return orderMapper.getZST(userId);
+	}
 }

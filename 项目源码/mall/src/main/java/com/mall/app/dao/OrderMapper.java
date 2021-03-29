@@ -55,5 +55,6 @@ public interface OrderMapper {
 	 * @return
 	 */
 	public int getOrderStatus(@Param(value="orderId")int orderId);
-	
+
+	public Map<String,Object> getZST(@Param("id")Integer id);
 }

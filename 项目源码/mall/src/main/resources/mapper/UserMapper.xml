@@ -67,5 +67,8 @@
 
 		limit #{page},#{size}
 	</select>
-	 
+	<update id="updatePassword">
+		update user set password = #{password,jdbcType=VARCHAR} where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
 </mapper>

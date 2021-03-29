@@ -37,4 +37,5 @@ public interface UserMapper {
 
     void updateStatus(@Param("status") Integer status, @Param("userid") Integer userid);
 
+	int updatePassword(User user);
 }

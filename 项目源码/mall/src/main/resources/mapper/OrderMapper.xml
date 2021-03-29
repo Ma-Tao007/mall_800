@@ -89,4 +89,10 @@
 		where order_id = #{orderId}
 	</select>
 
+	<!--卖家登陆后查询对应的资金走势图-->
+	<select id="getZST" resultType="java.util.Map">
+		select GROUP_CONCAT(s.price) price,GROUP_CONCAT(s.date ORDER BY s.date) date
+		from(select sum(price*product_num) price,DATE_FORMAT(order_time,'%Y-%m-%d')
+		 date from `order` where seller_id = #{id,jdbcType=INTEGER} GROUP BY DATE_FORMAT(order_time,'%Y-%m-%d'))  s
+	</select>
 </mapper>
