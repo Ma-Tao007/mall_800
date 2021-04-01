@@ -84,7 +84,12 @@
 			});
             table.on('tool(test)', function(obj) {
                 var user = obj.data
+				console.log("用户对象",user)
                 if (obj.event === 'show') {
+                    if(user.type!=1){
+                        layer.msg("当前不是卖家用户")
+						return
+					}
                     //查看执照
                     layer.open({
                         type : 1,
@@ -94,7 +99,7 @@
                             $('#upload_img').attr("style","display:none")
                         }
                     });
-                    $('#demo1').attr('src',"../../img/")
+                    $('#demo1').attr('src',"../../img/"+user.img)
 
 				}else if(obj.event === 'edit'){
                     //禁用
@@ -108,7 +113,9 @@
                             data:{status:0,userid:user.userId},
                             success: function () {
                                 layer.msg("禁用成功")
-                                table.reload('dg', {});//刷新表格
+								setTimeout(function(){
+                                    table.reload('dg', {});//刷新表格
+								},1500)
                             }
                         });
 
@@ -126,7 +133,9 @@
                             data:{status:1,userid:user.userId},
                             success: function () {
                                 layer.msg("启用成功")
-                                table.reload('dg', {});//刷新表格
+                                setTimeout(function(){
+                                    table.reload('dg', {});//刷新表格
+                                },1500)
                             }
                         });
 

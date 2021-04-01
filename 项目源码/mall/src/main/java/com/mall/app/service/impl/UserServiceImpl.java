@@ -60,4 +60,8 @@ public class UserServiceImpl implements UserService {
 		userMapper.updateStatus(status,userid);
 
 	}
+
+	public boolean updatePassword(User user) {
+		return userMapper.updatePassword(user)>0;
+	}
 }

@@ -56,8 +56,8 @@
         nickname as nickName,
         password,
         type,
-        sex,status
-        
+        sex,status,
+        img
         from `user`
         <where>
         <if test="type!=null and (type==0 or type==1 or type==2)">
@@ -67,5 +67,8 @@
 
 		limit #{page},#{size}
 	</select>
-	 
+	<update id="updatePassword">
+		update user set password = #{password,jdbcType=VARCHAR} where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
 </mapper>

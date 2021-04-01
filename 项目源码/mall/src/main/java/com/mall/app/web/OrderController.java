@@ -41,6 +41,12 @@ public class OrderController {
 		return impl.updateOrder(order);
 	}
 
+	@RequestMapping("/getZST")
+	public Map<String, Object> getZST() {
+		User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+		return impl.getZST(user.getUserId());
+	}
+
 	// �鶩����Ϣ
 	@RequestMapping("/listOrder")
 	public Map<String, Object> listOrder(int page,int limit) {

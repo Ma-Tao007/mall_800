@@ -12,11 +12,15 @@
 <link rel="stylesheet" href="../layui/css/layui.css">
 
 </head>
-
+<style>
+	#myCharts{
+		margin:auto
+	}
+</style>
 <body class="layui-layout-body">
 	<div class="layui-layout layui-layout-admin">
 		<div class="layui-header">
-			<div class="layui-logo">商城业务管理平台</div>
+			<a class="layui-logo" href="seller-index.jsp">商城业务管理平台</a>
 			<ul class="layui-nav layui-layout-right">
 				<li class="layui-nav-item"><b id="nickname"></b></li>
 				
@@ -26,24 +30,6 @@
 
 		<div class="layui-side layui-bg-black">
 			<div class="layui-side-scroll">
-
-<!-- 				<ul class="layui-nav layui-nav-tree" lay-filter="test"> -->
-<!-- 					<li class="layui-nav-item"><a class="" href="javascript:;">商品类别管理</a> -->
-<!-- 						<dl class="layui-nav-child"> -->
-<!-- 							<dd> -->
-<!-- 								<a href="javascript:;" data-id="2" data-title="类别信息管理" -->
-<!-- 									data-url="jsp/seller-productType.jsp" class="site-demo-active" -->
-<!-- 									data-type="tabAdd">类别信息管理</a> -->
-<!-- 							</dd> -->
-<!-- 							<dd> -->
-<!-- 								<a href="javascript:;" data-id="3" data-title="商品信息管理" -->
-<!-- 									data-url="jsp/goodsList.jsp" class="site-demo-active" -->
-<!-- 									data-type="tabAdd">商品信息管理</a> -->
-<!-- 							</dd> -->
-
-						</dl></li>
-
-				</ul>
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
 					<li class="layui-nav-item"><a class="" href="javascript:;">订单信息管理</a>
 						<dl class="layui-nav-child">
@@ -68,18 +54,6 @@
 						</dl></li>
 
 				</ul>
-<!-- 				<ul class="layui-nav layui-nav-tree" lay-filter="test"> -->
-<!-- 					<li class="layui-nav-item"><a class="" href="javascript:;">客户信息管理</a> -->
-<!-- 						<dl class="layui-nav-child"> -->
-<!-- 							<dd> -->
-<!-- 								<a href="javascript:;" data-id="6" data-title="客户信息管理" -->
-<!-- 									data-url="jsp/user.jsp" class="site-demo-active" -->
-<!-- 									data-type="tabAdd">客户信息管理</a> -->
-<!-- 							</dd> -->
-
-<!-- 						</dl></li> -->
-
-<!-- 				</ul> -->
 				<!-- 左侧垂直导航区域-->
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
 					<li class="layui-nav-item"><a class="" href="javascript:;">商家操作管理</a>
@@ -89,8 +63,13 @@
 									data-url="jsp/product.jsp" class="site-demo-active"
 									data-type="tabAdd">商品信息管理</a>
 							</dd>
-
-						</dl></li>
+							<dd>
+								<a href="javascript:;" data-id="1" data-title="个人信息管理"
+								   data-url="jsp/sellerMsg.jsp" class="site-demo-active"
+								   data-type="tabAdd">个人信息管理</a>
+							</dd>
+						</dl>
+					</li>
 
 				</ul>
 			</div>
@@ -100,7 +79,13 @@
 		<div class="layui-tab" lay-filter="demo" lay-allowclose="true"
 			style="margin-left: 200px;">
 			<ul class="layui-tab-title"></ul>
-			<div class="layui-tab-content"></div>
+			<div class="layui-tab-content">
+
+			</div>
+			<%--这里展示echarts图表--%>
+			<div id="myCharts" style="width: 1000px;height: 500px;">
+
+			</div>
 		</div>
 
 		<div class="layui-footer" style="text-align: center;">
@@ -109,6 +94,8 @@
 		</div>
 	</div>
 	<script src="layui/layui.all.js"></script>
+	<script src="mall/res/static/js/echarts.min.js"></script>
+	<script src="mall/res/static/js/jquery-3.2.1.min.js"></script>
 	<script>
 		layui.use([ 'element', 'layer', 'jquery' ], function() {
 			var element = layui.element;
@@ -185,6 +172,80 @@
 				$("iframe").css("height", h + "px");
 			}
 		});
+        var ZheLineChart = echarts.init(document.getElementById("myCharts"))
+
+        $.ajax({
+            url:"/order/getZST",
+            type:"post",
+            async:false,
+            success:function(data){
+
+                var datas = data.price.split(",")
+                var xdata = data.date.split(",")
+
+                ZheLineChart.setOption(getForeData(datas,xdata))
+            }
+        })
+        function getForeData(datas,xdata){
+            return {
+                grid: {
+                    bottom: 25,
+                    left:50
+                },
+                title: {
+                    text: '店铺日收入流水总分析'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    type: 'category',
+                    axisLabel: {
+                        showMaxLabel:true,//展示X轴后面的数据
+                        show: true,
+                        textStyle: {
+                            color: '#7e99af'
+                        }
+                    },
+                    //interval:100,
+                    data: xdata,
+                    boundaryGap: false,
+                },
+                yAxis: {
+                    splitNumber:3,//设置y轴刻度间断个数
+                    type: 'value',
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#7e99af'
+                        }
+                    },
+                    axisTick:{
+                        show:false
+                    },
+                    splitLine:{
+                        show:false
+                    }
+                },
+                series: [
+
+                    {
+                        symbol: 'circle',     //设定为实心点
+                        symbolSize: 7,   //设定实心点的大小
+                        itemStyle:{
+                            normal:{
+                                color:'rgba(10,115,255)',
+                                lineStyle: {
+                                    color: '#096BED' //改变折线颜色
+                                }
+                            }
+                        },
+                        data: datas,
+                        type: 'line'
+                    }]
+            };
+
+        }
 	</script>
 </body>
 </html>

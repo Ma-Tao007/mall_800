@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.mall.app.utils.MD5Utils;
@@ -30,6 +31,37 @@ public class UserController {
 	
 	@Autowired
 	private UserServiceImpl service;
+
+
+	@RequestMapping(value="/user/addProductpic",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+	public String addProductpic(@RequestParam MultipartFile file,HttpSession session,HttpServletRequest request)
+	{
+		String fileName = file.getOriginalFilename();  // 文件名
+		String suffixName = fileName.substring(fileName.lastIndexOf("."));  // 后缀名
+		String filePath = session.getServletContext().getRealPath("/")+"img\\";
+
+
+		fileName = UUID.randomUUID() + suffixName; // 新文件名
+		File dest = new File(filePath + fileName);
+		if (!dest.getParentFile().exists()) {
+			dest.getParentFile().mkdirs();
+		}
+		JSONObject j=new JSONObject();
+		try {
+			file.transferTo(dest);
+			User user=(User)SecurityUtils.getSubject().getSession().getAttribute("user");
+			service.uploadImg(fileName,user.getUsername());
+			j.put("success", true);
+			j.put("fileName", fileName);
+		} catch (IOException e) {
+			e.printStackTrace();
+			j.put("success", false);
+		}
+		return j.toJSONString();
+
+	}
+
+
 
 	@RequestMapping("/user/login")
 	public String login(String username,String password){
@@ -65,6 +97,14 @@ public class UserController {
 		return  u;
 	}
 
+	@RequestMapping("/user/getUser")
+	public User getUser(){
+		User user=(User)SecurityUtils.getSubject().getSession().getAttribute("user");
+		User u=service.login(user.getUsername());
+		u.setPassword(MD5Utils.convertMD5(MD5Utils.convertMD5(u.getPassword())));
+		return  u;
+	}
+
 	@RequestMapping("/user/updateStatus")
 	public void updateStatus(Integer status,Integer userid){
 		service.updateStatus(status,userid);
@@ -81,6 +121,13 @@ public class UserController {
 		info.put("username",user.getUsername());
 		System.out.println(info);
         return service.updateInfo(info);
+	}
+
+	@RequestMapping("/seller/updateInfo")
+	public boolean seller(String username,String password){
+		User user=(User)SecurityUtils.getSubject().getSession().getAttribute("user");
+		user.setPassword(MD5Utils.string2MD5(password));
+		return service.updatePassword(user);
 	}
 
 	@RequestMapping("/user/regist")
