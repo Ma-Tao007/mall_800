@@ -65,6 +65,8 @@ public class ShiroConfiguration {
 		map.put("/mall/html/usershop.html", "authc");
 		map.put("/logout", "logout");
 		map.put("/regist.jsp", "anon");
+		map.put("/jsp/notify_url.jsp", "anon");
+		map.put("/jsp/return_url.jsp", "anon");
 		map.put("/**", "authc");
 		shiroFilterFactoryBean.setUnauthorizedUrl("/login.jsp");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(map);

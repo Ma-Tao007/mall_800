@@ -23,7 +23,7 @@ public class DateUtils {
     public static final String DATE_FORMAT_HMS = "HH:mm:ss";
     public static final String DATE_FORMAT_HM = "HH:mm";
     public static final String DATE_FORMAT_YMDHM = "yyyy-MM-dd HH:mm";
-    public static final String DATE_FORMAT_YMDHMS = "yyyyMMddHHmmss";
+    public static final String DATE_FORMAT_YMDHMS = "yyyyMMddHHmmssSSS";
     public static final long ONE_DAY_MILLS = 3600000 * 24;
     public static final int WEEK_DAYS = 7;
     private static final int dateLength = DATE_FORMAT_YMDHM.length();
