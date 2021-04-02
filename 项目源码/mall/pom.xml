@@ -20,12 +20,16 @@
 
     <dependencies>
 
+		<!--<dependency>-->
+			<!--<groupId>com.alipay.api</groupId>-->
+			<!--<artifactId>alipay-sdk-java</artifactId>-->
+			<!--<version>20170324180803</version>-->
+		<!--</dependency>-->
 		<dependency>
-			<groupId>com.alipay.api</groupId>
+			<groupId>com.alipay.sdk</groupId>
 			<artifactId>alipay-sdk-java</artifactId>
-			<version>20170324180803</version>
+			<version>4.13.0.ALL</version>
 		</dependency>
-
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>

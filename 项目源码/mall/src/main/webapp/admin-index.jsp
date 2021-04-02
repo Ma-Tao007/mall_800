@@ -69,7 +69,11 @@
 									data-url="jsp/user.jsp" class="site-demo-active"
 									data-type="tabAdd">客户信息管理</a>
 							</dd>
-
+							<dd>
+								<a href="javascript:;" data-id="7" data-title="退货申请管理"
+								   data-url="jsp/refund.jsp" class="site-demo-active"
+								   data-type="tabAdd">退货申请管理</a>
+							</dd>
 						</dl></li>
 
 				</ul>

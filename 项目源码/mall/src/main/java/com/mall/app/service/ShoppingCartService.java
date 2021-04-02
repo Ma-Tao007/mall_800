@@ -13,5 +13,5 @@ public interface ShoppingCartService {
 	
 	int getCountShoppingCart(Map<String, Object> map);
 	boolean removeShoppingCart(ShoppingCart shoppingCart);
-	boolean emptyShoppingcart(int addressId,String productIds,String productNums);
+	Map<String,Object> emptyShoppingcart(int addressId,String productIds,String productNums);
 }

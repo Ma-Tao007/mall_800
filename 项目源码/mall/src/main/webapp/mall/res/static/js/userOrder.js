@@ -63,26 +63,6 @@ layui.use(["jquery","table","element"],function(){
                 }
             })
 
-        }else if(obj.event === 'evaluate'){
-            layer.confirm('确定已收货？', {
-                btn: ['确定','取消'] //按钮
-            }, function(){
-                $.ajax({
-                    url:"/receiveProduct",
-                    type:"post",
-                    data:{
-                        orderId: obj.data.orderId
-                    },
-                    success:function(res){
-                        if(res == true){
-                            layer.msg('收货成功');
-                            window.location.reload();
-                        }else{
-                            layer.msg('错误！');
-                        }
-                    }
-                })
-            })
         }
     });
 	  //已发货
@@ -106,7 +86,7 @@ layui.use(["jquery","table","element"],function(){
 	  	}
 	  });
     table.on('tool(house-user-order-status1)', function(obj){
-
+		//查看物流
         if(obj.event === 'check'){
             var logisticName;
             var logisticId = obj.data.logisticId;  //此处javabean出错，只能将错就错
@@ -127,6 +107,7 @@ layui.use(["jquery","table","element"],function(){
             })
 
         }else if(obj.event === 'evaluate'){
+            //收货
             layer.confirm('确定已收货？', {
                 btn: ['确定','取消'] //按钮
             }, function(){
@@ -148,7 +129,45 @@ layui.use(["jquery","table","element"],function(){
             })
         }
     });
-	  //已签收
+    //退款成功
+    table.render({
+        elem: '#house-user-order-status4'
+        ,url:  '/listUserOrder?status=4'
+        ,skin: 'line'
+        ,cols: [[
+            {field:'number', title:'订单信息', align:'center', templet: '#orderTpl'}
+            ,{field:'productName', title:'商品', templet: '#imgTpl', align:'center'}
+            ,{field:'productNum', title:'件数', align:'center', width:80}
+            ,{field:'price', title:'单价', align:'center', templet: '#priceTpl', width:100}
+            ,{field:'status', title:'订单状态', align:'center', templet: '#stateTpl', width:100}
+        ]]
+        ,parseData:function(res){
+            return{
+                code:0,
+                data:res
+            }
+        }
+    });
+    //申请退款
+    table.render({
+        elem: '#house-user-order-status3'
+        ,url:  '/listUserOrder?status=3'
+        ,skin: 'line'
+        ,cols: [[
+            {field:'number', title:'订单信息', align:'center', templet: '#orderTpl'}
+            ,{field:'productName', title:'商品', templet: '#imgTpl', align:'center'}
+            ,{field:'productNum', title:'件数', align:'center', width:80}
+            ,{field:'price', title:'单价', align:'center', templet: '#priceTpl', width:100}
+            ,{field:'status', title:'订单状态', align:'center', templet: '#stateTpl', width:100}
+        ]]
+        ,parseData:function(res){
+            return{
+                code:0,
+                data:res
+            }
+        }
+    });
+	  //交易完成
 	  table.render({
 	    elem: '#house-user-order-status2'
 	    ,url:  '/listUserOrder?status=2'
@@ -168,11 +187,11 @@ layui.use(["jquery","table","element"],function(){
 	  		}
 	  	}
 	  });
+    //交易完成
     table.on('tool(house-user-order-status2)', function(obj){
-
         if(obj.event === 'check'){
             var logisticName;
-            var logisticId = obj.data.logisticId;  //此处javabean出错，只能将错就错
+            var logisticId = obj.data.logisticId;
             $.ajax({
                 url:"/getLogisticName",
                 type:"post",
@@ -189,25 +208,20 @@ layui.use(["jquery","table","element"],function(){
                 }
             })
 
-        }else if(obj.event === 'evaluate'){
-            layer.confirm('确定已收货？', {
-                btn: ['确定','取消'] //按钮
-            }, function(){
-                $.ajax({
-                    url:"/receiveProduct",
-                    type:"post",
-                    data:{
-                        orderId: obj.data.orderId
-                    },
-                    success:function(res){
-                        if(res == true){
-                            layer.msg('收货成功');
-                            window.location.reload();
-                        }else{
-                            layer.msg('错误！');
-                        }
-                    }
-                })
+        }else if(obj.event === 'refund'){
+            //申请退款
+			var orderId = obj.data.orderId
+            $.ajax({
+                url:"/order/refund",
+                type:"post",
+                data:{
+                    orderId: orderId,
+					status:3
+                },
+                success:function(res){
+                   layer.msg("退款申请提交成功!请等待管理员审核")
+                    window.location.reload();
+                }
             })
         }
     });
@@ -252,7 +266,22 @@ layui.use(["jquery","table","element"],function(){
     			}
     		  })
     		})
-	    }
+	    }else if(obj.event === 'refund'){
+            //申请退款
+            var orderId = obj.data.orderId
+            $.ajax({
+                url:"/order/refund",
+                type:"post",
+                data:{
+                    orderId: orderId,
+                    status:3
+                },
+                success:function(res){
+                    layer.msg("退款申请提交成功!请等待管理员审核")
+                    window.location.reload();
+                }
+            })
+        }
 	  });
 })
 

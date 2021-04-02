@@ -3,11 +3,13 @@ package com.mall.app.service.impl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.mall.app.bean.Address;
 import com.mall.app.dao.AddressMapper;
+import com.mall.app.utils.DateUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,7 +65,8 @@ public class ShoppingCartImpl implements ShoppingCartService{
 	
 	@Override
 	@Transactional
-	public boolean emptyShoppingcart(int addressId, String productIds, String productNums) {
+	public Map<String,Object> emptyShoppingcart(int addressId, String productIds, String productNums) {
+		Map<String,Object> map = new HashMap<String, Object>();
 		String[] productIdArr = productIds.split(",");
 		String[] productNumArr = productNums.split(",");
 		boolean flag = true;
@@ -78,21 +81,26 @@ public class ShoppingCartImpl implements ShoppingCartService{
 			if (goods.getStorage() >= productNum) {
 				ret1 = goodsMapper.updateProductNum(productNum, productId);
 			}else{
-				return false;
+				flag = false;
 			}
-
-			User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
-			Date date = new Date();
-			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-			boolean ret2 = goodsMapper.insertOrder(productId, productNum, goods.getPrice(), user.getUserId(), goods.getSeller_id(), addressname, formatter.format(date));
-			ShoppingCart shoppingCart = new ShoppingCart();
-			shoppingCart.setBuyerId(user.getUserId());
-			shoppingCart.setProductId(productId);
-			boolean ret3 = shoppingCartMapper.removeShoppingCart(shoppingCart) > 0;
-			flag = ret1 && ret2 && ret3 && flag;
+			if(flag){
+				User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+				Date date = new Date();
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				String orderno = new String(DateUtils.formatDateToString(new Date(),DateUtils.DATE_FORMAT_YMDHMS));
+				boolean ret2 = goodsMapper.insertOrder(productId, productNum, goods.getPrice(), user.getUserId(), goods.getSeller_id(), addressname, formatter.format(date),orderno);
+				map.put("orderno",orderno);
+				map.put("price",goods.getPrice()*productNum);
+				ShoppingCart shoppingCart = new ShoppingCart();
+				shoppingCart.setBuyerId(user.getUserId());
+				shoppingCart.setProductId(productId);
+				boolean ret3 = shoppingCartMapper.removeShoppingCart(shoppingCart) > 0;
+				flag = ret1 && ret2 && ret3 && flag;
+			}
 		}
-		return flag;
+
+		map.put("flag",flag);
+		return map;
 	}
 
 }

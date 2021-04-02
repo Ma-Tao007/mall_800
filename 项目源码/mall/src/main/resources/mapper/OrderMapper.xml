@@ -16,6 +16,11 @@
 		#{buyerId}, #{sellerId}, #{buyerAddr},
 		#{sellerAddr}, #{logisticId},#{order_time})
 	</insert>
+	<insert id="insertRefund">
+		insert into refund values(null,#{sellerid,jdbcType=INTEGER},#{buyerid,jdbcType=INTEGER},#{money,jdbcType=VARCHAR}
+		,#{orderno,jdbcType=VARCHAR},#{inputtime,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{orderid,jdbcType=INTEGER})
+	</insert>
+
 
 	<!-- 删除订单信息 -->
 	<delete id="removeOrder">
@@ -43,6 +48,9 @@
 		where
 		order_id = #{orderId}
 	</update>
+	<update id="updateStatus">
+		update `order` set status = #{status,jdbcType=INTEGER} where order_id =#{orderId,jdbcType=INTEGER}
+	</update>
 
 	<!-- 查询订单数量 -->
 	<select id="getCountOrder" resultType="int">
@@ -53,6 +61,28 @@
 			</if>
 		</where>
 	</select>
+	<!-- 同意退货 -->
+	<update id="setRefundStatus">
+		update refund set status = 1 where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 查询退货信息 -->
+	<select id="listRefund" resultType="com.mall.app.bean.Refund">
+		select
+		*,
+		(select username from `user` where user_id = buyerid) buyername,
+		(select username from `user` where user_id = sellerid) sellername
+		from refund order by inputtime desc
+		limit #{page},#{size}
+	</select>
+	<!--查询退货数量-->
+	<select id="countRefund" resultType="java.lang.Integer">
+		select
+		count(id) from refund
+	</select>
+	<!-- 删除退货信息 -->
+	<delete id="deleteRefundById">
+		delete from refund where id = #{id,jdbcType=INTEGER}
+	</delete>
 
 	<!-- 查询订单信息 -->
 	<select id="listOrder" resultType="com.mall.app.bean.Order">
@@ -72,8 +102,8 @@
 		seller_addr as sellerAddr,
 		`order`.logistic_id as logisticId,
 		com_name as comName,
-		`status` as status
-
+		`status` as status,
+		orderno
 		from `order` , logistic_com,
 		(select DISTINCT product.product_name,product.product_id	from product,`order`
 		 where product.product_id = `order`.product_id) as pp
@@ -94,5 +124,27 @@
 		select GROUP_CONCAT(s.price) price,GROUP_CONCAT(s.date ORDER BY s.date) date
 		from(select sum(price*product_num) price,DATE_FORMAT(order_time,'%Y-%m-%d')
 		 date from `order` where seller_id = #{id,jdbcType=INTEGER} GROUP BY DATE_FORMAT(order_time,'%Y-%m-%d'))  s
+	</select>
+	<select id="selectById" resultType="com.mall.app.bean.Order">
+		select
+		order_id as orderId,
+		`order`.product_id as productId,
+		product_num as productNum,
+		price as price,
+		buyer_id as
+		buyerId,
+		seller_id as sellerId,
+		order_time as orderTime,
+		buyer_addr as
+		buyerAddr,
+		(select CONCAT(province,city,county,address_detail) addressname from address where address_id=buyerAddr) buyerAddrName,
+		seller_addr as sellerAddr,
+		`order`.logistic_id as logisticId,
+		`status` as status,
+		orderno
+		from `order` where order_id = #{orderId,jdbcType=INTEGER}
+	</select>
+	<select id="selectRefundById" resultType="com.mall.app.bean.Refund">
+		select * from refund where id = #{id,jdbcType=INTEGER}
 	</select>
 </mapper>

@@ -72,6 +72,8 @@
           <li>等待发货</li>
           <li>已发货</li>
           <li>交易完成</li>
+          <li>申请退款</li>
+          <li>退款成功</li>
         </ul>
         <div class="layui-tab-content">
         
@@ -87,7 +89,12 @@
           <div class="layui-tab-item">
             <table class="house-user-order" id="house-user-order-status2" lay-filter="house-user-order-status2"></table>
           </div>
-          
+        <div class="layui-tab-item">
+            <table class="house-user-order" id="house-user-order-status3" lay-filter="house-user-order-status3"></table>
+        </div>
+        <div class="layui-tab-item">
+            <table class="house-user-order" id="house-user-order-status4" lay-filter="house-user-order-status4"></table>
+        </div>
         </div>
       </div>      
     </div>
@@ -138,8 +145,12 @@
     <span style="color: #999;">已完成</span>
   {{#  } else if(d.status == 1){ }}
     <span style="color: #73c292;">已发货</span>
-  {{#  } else {console.info(d) }}
+  {{#  } else if(d.status == 0) { }}
     <span style="color: #e09b4e;">待发货</span>
+  {{#  } else if(d.status == 3){ }}
+  <span style="color: #e0608e;">已申请退款</span>
+  {{#  } else { }}
+  <span style="color: #e0142c;">已退款</span>
   {{#  } }}
 </script>
 <script type="text/html" id="handleTpl">
@@ -147,7 +158,9 @@
     <a class="handel" lay-event="check" style="color: #e39d55; cursor: pointer; display: block;">查看物流</a>
     {{#  if(d.status == 1){ }}
 	<a class="handel" lay-event="evaluate" style="color: #e39d55; cursor: pointer; display: block;">收货</a>
-	{{# }  }}
+	{{# }else if(d.status == 2){ }}
+    <a class="handel" lay-event="refund" style="color: #5596e3; cursor: pointer; display: block;">申请退款</a>
+    {{# } }}
 
   </div>
 </script>

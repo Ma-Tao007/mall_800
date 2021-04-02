@@ -28,7 +28,7 @@ public class UserOrderServiceImpl implements UserOrderService {
 		System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
 		System.out.println(user.getUserId());
 		System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*");
-		if(status != 0 && status != 1 && status != 2){ //查询所有
+		if(status != 0 && status != 1 && status != 2 && status != 3 && status != 4){ //查询所有
 			return userOrderMapper.listUserOrder(user.getUserId()/*, (pageNo-1)*pageCapacity, pageCapacity*/);
 		}else{ //按状态查询
 			return userOrderMapper.listUserOrderByStatus(user.getUserId()/*, (pageNo-1)*pageCapacity, pageCapacity*/, status);

@@ -18,9 +18,9 @@ public class PaymentController {
 
 
     @RequestMapping("/pay")
-    public void payMent(HttpServletResponse response, HttpServletRequest request) {
+    public void payMent(HttpServletResponse response, HttpServletRequest request,String orderno,String price) {
         try {
-            alipayService.aliPay(response,request);
+            alipayService.aliPay(response,request,orderno,price);
         } catch (IOException e) {
             e.printStackTrace();
         }

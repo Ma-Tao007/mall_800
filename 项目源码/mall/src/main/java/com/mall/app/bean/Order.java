@@ -6,17 +6,19 @@ public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private int orderId;        // ����ID
-	private int productId;      // ��ƷID
-	private int ProductNum;     // ��Ʒ����
-	private double price;          // ��Ʒ����
-	private int buyerId;        // ���ID
-	private int sellerId;       // ���ID
-	private String orderTime;      // ��������ʱ��
- 	private String buyerAddr;      // ����ջ���ַ
-	private String sellerAddr;     // ���ҷ�����ַ
- 	private int logisticId;    //  logisticId 单词拼写出错！！！！！！！！！！！！！！！！！！
-	private int status;         // ����״̬--�Ƿ񷢻
+	private int orderId;
+	private int productId;
+	private int ProductNum;
+	private double price;
+	private int buyerId;
+	private int sellerId;
+	private String orderTime;
+ 	private String buyerAddr;
+	private String sellerAddr;
+ 	private int logisticId;
+	private int status;
+	private String orderno;//订单号
+
 	private String productName;    // 商品名称
 	private String comName;    // 物流公司名
 	public String getProductName() {
@@ -99,6 +101,12 @@ public class Order implements Serializable {
 		this.status = status;
 	}
 
-	
-	
+
+	public String getOrderno() {
+		return orderno;
+	}
+
+	public void setOrderno(String orderno) {
+		this.orderno = orderno;
+	}
 }

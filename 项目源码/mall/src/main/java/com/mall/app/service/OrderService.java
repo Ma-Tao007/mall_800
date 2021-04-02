@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mall.app.bean.Order;
+import com.mall.app.bean.Refund;
 
 public interface OrderService {
 
@@ -51,4 +52,20 @@ public interface OrderService {
 	public int getOrderStatus(int orderId);
 
     Map<String, Object> getZST(Integer userId);
+
+    void updateStatus(Integer orderId, Integer status);
+
+    Order selectById(Integer order);
+
+	int insertRefund(Refund refund);
+
+	int updateRefund(Integer id);
+
+	Refund selectRefundById(Integer id);
+
+	int deleteRefundById(Integer id);
+
+	int getCountRefund(Map<String, Object> map);
+
+	List<Refund> listRefund(Map<String, Object> map);
 }

@@ -7,13 +7,9 @@ import com.mall.app.bean.Goods;
 
 public interface GoodsService {
 
-	int getCountGoods();
 
-	List<Goods> listPageGoods(Map<String, Object> map);
-	
 	Goods selectGoods(int id);
-	boolean saveGoods(Goods goods);
-	
-	boolean immediateBuy(int addressId,int productId,int productNum);
+
+	Map<String,Object> immediateBuy(int addressId,int productId,int productNum);
 
 }

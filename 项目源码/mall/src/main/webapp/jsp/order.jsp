@@ -165,8 +165,12 @@
 					title : 'ID',
 					type : 'checkbox'
 				}, {
+                        field : 'orderno',
+                        title : '订单号'
+                    },  {
 					field : 'productId',
-					title : '商品ID'
+					title : '商品ID',
+						hide:true
 				},  {
 					field : 'productName',
 					title : '商品名字'
@@ -194,7 +198,8 @@
 					title : '卖家收货地址'
 				}, {
 					field : 'logisticId',
-					title : '物流公司ID'
+					title : '物流公司ID',
+						hide:true
 				}, {
 					field : 'comName',
 					title : '物流公司名称'
@@ -206,9 +211,13 @@
 						    return "未发货";
 						}else if(data.status==1){
 						    return "已发货"
-						}else{
+						}else if(data.status==2){
 						    return "已签收"
-						}
+						}else if(data.status==3){
+                            return "已申请退款"
+                        }else if(data.status==4){
+                            return "已退款"
+                        }
 					}
 				}, {
 					title : '操作',

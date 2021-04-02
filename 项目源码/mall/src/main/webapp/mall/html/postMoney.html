@@ -45,8 +45,8 @@
     <br>
     <br>
     <div style="width: 100%;text-align: right">
-        <!--<button id="batchBuy" class="layui-btn" >去支付</button>-->
-        <a href="/payment/pay" class="layui-btn" target="_blank" >去支付</a>
+        <button id="batchBuy" class="layui-btn" >去支付</button>
+        <!--<a href="/payment/pay" class="layui-btn" target="_blank" >去支付</a>-->
     </div>
     <br>
     <br>
@@ -87,20 +87,18 @@
                         productIds: getQueryVariable("productIds"),
                         productNums: getQueryVariable("productNums"),
                         addressId: datas
-                    }, function (flag) {
-                        if (flag == true) {
-                            layer.msg('购买成功');
-                            window.location.href = "postMoneySuccess.html"
+                    }, function (res) {
+                        if (res.flag == true) {
+                            window.location.href = "/payment/pay?orderno="+res.orderno+"&price="+res.price
                         } else {
                             layer.msg("商品数量不足");
                         }
                     });
                 }else{
                     //直接购买
-                    $.post('/user/immediateBuy', {'addressId':datas,'productId':getQueryVariable("productIds"),'productNum':getQueryVariable("productNums")} , function(flag) {
-                        if(flag == true){
-                            layer.msg('购买成功');
-                            window.location.href = "postMoneySuccess.html"
+                    $.post('/user/immediateBuy', {'addressId':datas,'productId':getQueryVariable("productIds"),'productNum':getQueryVariable("productNums")} , function(res) {
+                        if(res.flag == true){
+                            window.location.href = "/payment/pay?orderno="+res.orderno+"&price="+res.price
                         }else{
                             layer.msg("商品数量不足");
                         }

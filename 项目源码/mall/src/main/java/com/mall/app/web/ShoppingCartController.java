@@ -52,22 +52,24 @@ public class ShoppingCartController {
 	}
 
 
+	//直接购买
 	@RequestMapping("/user/immediateBuy")
-	public boolean   immediateBuy(int addressId,int productId,int productNum){
+	public Map<String, Object>   immediateBuy(int addressId,int productId,int productNum){
 		System.out.println("----------------------------");
 		System.out.println(addressId);
 		System.out.println("----------------------------");
 		return goodsService.immediateBuy(addressId, productId, productNum);
 	}
-	
+
+	//购物车支付
 	@RequestMapping("/user/emptyShoppingcart")
-	public boolean   emptyShoppingcart(int addressId,String productIds,String productNums){
+	public Map<String, Object>   emptyShoppingcart(int addressId, String productIds, String productNums){
 		System.out.println(addressId+"  "+productIds+"  "+productNums);
 		return shoppingCartService.emptyShoppingcart(addressId, productIds, productNums);
 	}
 
 
-	//庞晓君整合
+
 	@RequestMapping("/user/removeShoppingCart")
 	public boolean   removeShoppingCart(ShoppingCart shoppingCart){
 		User user = (User)SecurityUtils.getSubject().getSession().getAttribute("user");

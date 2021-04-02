@@ -69,8 +69,7 @@ layui.define(['element', 'carousel', 'table', 'util'], function(exports){
   
   //合计
   var goodsVal = $(".house-usershop").find("#total").children("span")
-  ,copyWith = $(".house-usershop").find("#toCope").children("p").children("big")
-  ,copyTips = $(".house-usershop").find("#toCope").children("span");
+  ,copyWith = $(".house-usershop").find("#toCope").children("p").children("big");
   //监听复选框选择 获得总数
   table.on('checkbox(house-usershop-table)', function(obj){
     var checkStatus = table.checkStatus('house-usershop-table');
@@ -78,14 +77,8 @@ layui.define(['element', 'carousel', 'table', 'util'], function(exports){
     $(checkStatus.data).each(function(){
           goodsVal[0].innerHTML = parseFloat(this.num * this.goods.discount_price) + Number(goodsVal[0].innerHTML);
     });
-    //满减
-    if(goodsVal[0].innerHTML > 200){
-      copyWith[0].innerHTML = '￥' + (goodsVal[0].innerHTML - 20).toFixed(2)
-      copyTips.css("display", "inline-block");
-    }else{
-      copyWith[0].innerHTML =  '￥' + parseFloat(goodsVal[0].innerHTML).toFixed(2);
-      copyTips.css("display", "none");
-    };
+  copyWith[0].innerHTML =  '￥' + parseFloat(goodsVal[0].innerHTML).toFixed(2);
+
     //转换格式
     goodsVal[0].innerHTML = parseFloat(goodsVal[0].innerHTML).toFixed(2);
     if(checkStatus.data.length != 0){
@@ -164,7 +157,6 @@ layui.define(['element', 'carousel', 'table', 'util'], function(exports){
     		 			form.render('checkbox');
     		 			$(".house-usershop-table-num").children(".numal").html('已选 0 件')
     		 			copyWith[0].innerHTML = goodsVal[0].innerHTML = '￥0.00';
-    		 			copyTips.css("display", "none");
     		 			layer.msg('已删除');
     		 			layer.close(index);
     	 			});

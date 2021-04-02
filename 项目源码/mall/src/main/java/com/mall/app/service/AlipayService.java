@@ -11,5 +11,7 @@ public interface AlipayService {
      * @param request
      * @throws IOException
      */
-    void  aliPay(HttpServletResponse response, HttpServletRequest request) throws IOException;
+    void  aliPay(HttpServletResponse response, HttpServletRequest request,String orderno,String price) throws IOException;
+
+    Boolean refund(HttpServletResponse response, HttpServletRequest request,String orderno, String money);
 }
