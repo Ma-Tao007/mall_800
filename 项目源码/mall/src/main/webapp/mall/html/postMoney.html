@@ -53,6 +53,8 @@
 
     <script src="../res/layui/layui.js"></script>
     <script>
+        console.log( getQueryVariable("color"))
+        console.log( getQueryVariable("size"))
         var datas = 0;
         layui.use(['table','jquery'], function(){
             var table = layui.table;
@@ -86,6 +88,8 @@
                     $.post('/user/emptyShoppingcart', {
                         productIds: getQueryVariable("productIds"),
                         productNums: getQueryVariable("productNums"),
+                        color: getQueryVariable("color"),
+                        size: getQueryVariable("size"),
                         addressId: datas
                     }, function (res) {
                         if (res.flag == true) {
@@ -96,7 +100,8 @@
                     });
                 }else{
                     //直接购买
-                    $.post('/user/immediateBuy', {'addressId':datas,'productId':getQueryVariable("productIds"),'productNum':getQueryVariable("productNums")} , function(res) {
+                    $.post('/user/immediateBuy', {'addressId':datas,'productId':getQueryVariable("productIds"),'productNum':getQueryVariable("productNums")
+                    ,'color':getQueryVariable("color"),'size':getQueryVariable("size")} , function(res) {
                         if(res.flag == true){
                             window.location.href = "/payment/pay?orderno="+res.orderno+"&price="+res.price
                         }else{
@@ -112,7 +117,7 @@
             var vars = query.split("&");
             for (var i=0;i<vars.length;i++) {
                 var pair = vars[i].split("=");
-                if(pair[0] == variable){return pair[1];}
+                if(pair[0] == variable){return decodeURIComponent(pair[1]);}
             }
             return(false);
         }
@@ -135,7 +140,7 @@
         <a href="about.html">配送服务</a>
         <a href="about.html">关于货源</a>
       </span>
-            <p>家居商城版权所有 &copy; 2012-2020</p>
+            <p>家居商城版权所有 &copy; 2019-2022</p>
         </div>
     </div>
 </div>

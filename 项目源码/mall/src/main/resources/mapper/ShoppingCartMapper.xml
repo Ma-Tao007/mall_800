@@ -15,7 +15,7 @@
 	
 	<insert id="saveShoppingCart">
 		insert into shopping_cart
-		(product_id,buyer_id,price,num) values(#{productId},#{buyerId},#{price},#{num})
+		(product_id,buyer_id,price,num,color,size) values(#{productId},#{buyerId},#{price},#{num},#{color},#{size})
 	</insert>
 
 	<update id="updateShoppingCart">
@@ -48,6 +48,8 @@
 		<id property="buyerId" column="buyer_id" />
 		<result property="price" column="price" />
 		<result property="pprice" column="pprice" />
+		<result property="color" column="color" />
+		<result property="size" column="size" />
 		<result property="num" column="num" />
 		<association property="goods" javaType="com.mall.app.bean.Goods">
 			<id property="product_id" column="product_id" />

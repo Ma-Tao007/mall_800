@@ -10,6 +10,6 @@ public interface GoodsService {
 
 	Goods selectGoods(int id);
 
-	Map<String,Object> immediateBuy(int addressId,int productId,int productNum);
+	Map<String,Object> immediateBuy(int addressId,int productId,int productNum,String color,String size);
 
 }

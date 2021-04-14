@@ -11,7 +11,7 @@
 		product where product_id=#{product_id}
 	</select>
  	<insert id="insertOrder">
- 		insert into `order` (product_id,product_num,price,buyer_id,seller_id,buyer_addr,order_time,orderno) value(#{product_id},#{product_num},#{price},#{buyer_id},#{seller_id},#{buyer_addr},#{order_time},#{orderno})
+ 		insert into `order` (product_id,product_num,price,buyer_id,seller_id,buyer_addr,order_time,orderno,color,size) value(#{product_id},#{product_num},#{price},#{buyer_id},#{seller_id},#{buyer_addr},#{order_time},#{orderno},#{color},#{size})
  	</insert>
  	<update id="updateProductNum">
  		update product set storage = storage-#{number}, sale = sale+#{number} where product_id=#{productId}

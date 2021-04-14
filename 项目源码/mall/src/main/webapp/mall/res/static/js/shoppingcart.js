@@ -26,6 +26,8 @@ layui.define(['element', 'carousel', 'table', 'util'], function(exports){
       ,{title:'商品', align:'center', minWidth:260, templet: '#goodsTpl'}
       ,{title:'单价', align:'center', minWidth:160, templet: '#priceTpl'}
       ,{title:'数量', align:'center', width:150, templet: '#numTpl'}
+          ,{title:'颜色', align:'center', width:150, templet: '#colorTpl'}
+          ,{title:'尺寸', align:'center', width:150, templet: '#sizeTpl'}
       ,{title:'小计', align:'center', width:120, templet: '#totalTpl'}
       ,{title:'操作', align:'center', width:100, templet: '#shopTpl'}
     ]]
@@ -121,18 +123,24 @@ layui.define(['element', 'carousel', 'table', 'util'], function(exports){
 	    }else{
 	        var productIds = "";
 	        var productNums = "";
+            var size = "";
+            var color = "";
             for ( var i in checkData) {
                 if(i!=0){
                     productIds+=','
                     productNums+=','
+                    color+=','
+                    size+=','
                 }
                 productIds+=checkData[i].productId
                 productNums+=checkData[i].num
+                size+=checkData[i].size
+                color+=checkData[i].color
             }
 
 
 
-            var url = "postMoney.html?productIds="+productIds+"&productNums="+productNums+"&type=1";//此处拼接内容
+            var url = "postMoney.html?productIds="+productIds+"&productNums="+productNums+"&color="+color+"&size="+size+"&type=1";//此处拼接内容
             window.location.href = url
 	    }
 });

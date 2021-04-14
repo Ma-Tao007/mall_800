@@ -169,7 +169,7 @@ body.user{background-color: #FAFAFA;}
 .house-detail{margin-bottom: 95px;}
 .house-detail > p.title{color: #999; line-height: 80px; padding-top: 7px;}
 .house-detail > p.title a{color: #999;}
-.house-detail div.price div{font-size: 0;}
+/*.house-detail div.price div{font-size: 0;}*/
 .house-detail div.price div div.intro-img{width: 80%; display: inline-block; vertical-align: middle;}
 .house-detail div.price div div.intro-img img, .house-detail div.price div ul.thumb img{width: 100%;}
 .house-detail div.price div ul.thumb{width: 18%; margin-left: 2%; display: inline-block; vertical-align: middle;}

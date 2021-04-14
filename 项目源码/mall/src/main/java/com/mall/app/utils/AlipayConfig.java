@@ -15,8 +15,8 @@ public class AlipayConfig {
 //    public static String notify_url = "http://localhost:808/jsp/notify_url.jsp";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-//    public static String return_url = "http://localhost:808/mall/html/postMoneySuccess.html";
-    public static String return_url = "http://rzxqxw.natappfree.cc/mall/html/postMoneySuccess.html";
+    public static String return_url = "http://localhost:808/mall/html/postMoneySuccess.html";
+//    public static String return_url = "http://rzxqxw.natappfree.cc/mall/html/postMoneySuccess.html";
 
     // 签名方式
     public static String sign_type = "RSA2";

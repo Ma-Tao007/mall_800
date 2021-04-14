@@ -64,7 +64,7 @@
 									data-type="tabAdd">商品信息管理</a>
 							</dd>
 							<dd>
-								<a href="javascript:;" data-id="1" data-title="个人信息管理"
+								<a href="javascript:;" data-id="2" data-title="个人信息管理"
 								   data-url="jsp/sellerMsg.jsp" class="site-demo-active"
 								   data-type="tabAdd">个人信息管理</a>
 							</dd>

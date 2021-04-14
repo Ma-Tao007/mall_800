@@ -94,6 +94,7 @@
 		price as price,
 		buyer_id as
 		buyerId,
+		color,size,
 		seller_id as sellerId,
 		order_time as orderTime,
 		buyer_addr as

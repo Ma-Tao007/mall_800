@@ -57,8 +57,8 @@ layui.use(["jquery","table","element"],function(){
                     logisticName = res;
                     layer.open({
                         type: 1
-                        ,content: "物流公司：" + logisticName
-                        ,area: ['150px', '100px']
+                        ,content: "物流公司：" + logisticName+"<br>发货地址："+obj.data.sellerAddr+"<br>收获地址："+obj.data.buyerAddr
+                        ,area: ['250px', '200px']
                     });
                 }
             })
@@ -100,8 +100,8 @@ layui.use(["jquery","table","element"],function(){
                     logisticName = res;
                     layer.open({
                         type: 1
-                        ,content: "物流公司：" + logisticName
-                        ,area: ['150px', '100px']
+                        ,content: "物流公司：" + logisticName+"<br>发货地址："+obj.data.sellerAddr+"<br>收获地址："+obj.data.buyerAddr
+                        ,area: ['250px', '200px']
                     });
                 }
             })
@@ -202,8 +202,8 @@ layui.use(["jquery","table","element"],function(){
                     logisticName = res;
                     layer.open({
                         type: 1
-                        ,content: "物流公司：" + logisticName
-                        ,area: ['150px', '100px']
+                        ,content: "物流公司：" + logisticName+"<br>发货地址："+obj.data.sellerAddr+"<br>收获地址："+obj.data.buyerAddr
+                        ,area: ['250px', '200px']
                     });
                 }
             })
@@ -240,8 +240,8 @@ layui.use(["jquery","table","element"],function(){
 	    				logisticName = res;
 	    				layer.open({
 	    			        type: 1
-	    			        ,content: "物流公司：" + logisticName
-	    			        ,area: ['150px', '100px']
+                            ,content: "物流公司：" + logisticName+"<br>发货地址："+obj.data.sellerAddr+"<br>收获地址："+obj.data.buyerAddr
+                            ,area: ['250px', '200px']
 	    			      });
 	    			}
 	    	 })

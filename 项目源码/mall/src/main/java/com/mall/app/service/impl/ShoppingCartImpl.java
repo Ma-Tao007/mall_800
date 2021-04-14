@@ -65,17 +65,20 @@ public class ShoppingCartImpl implements ShoppingCartService{
 	
 	@Override
 	@Transactional
-	public Map<String,Object> emptyShoppingcart(int addressId, String productIds, String productNums) {
+	public Map<String,Object> emptyShoppingcart(int addressId, String productIds, String productNums,String colors,String sizes) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		String[] productIdArr = productIds.split(",");
 		String[] productNumArr = productNums.split(",");
+		String[] colorsArr = colors.split(",");
+		String[] sizesArr = sizes.split(",");
 		boolean flag = true;
 		Address address = addressMapper.selectAddress(addressId);
 		String addressname = address.getProvince()+address.getCity()+address.getCounty()+address.getAddress_detail();
 		for(int i=0;i<productIdArr.length;i++) {
 			int productId = Integer.parseInt(productIdArr[i]);
 			int productNum = Integer.parseInt(productNumArr[i]);
-
+			String color = colorsArr[i];
+			String size = sizesArr[i];
 			Goods goods = goodsMapper.selectGoods(productId);
 			boolean ret1 = false;
 			if (goods.getStorage() >= productNum) {
@@ -88,7 +91,7 @@ public class ShoppingCartImpl implements ShoppingCartService{
 				Date date = new Date();
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				String orderno = new String(DateUtils.formatDateToString(new Date(),DateUtils.DATE_FORMAT_YMDHMS));
-				boolean ret2 = goodsMapper.insertOrder(productId, productNum, goods.getPrice(), user.getUserId(), goods.getSeller_id(), addressname, formatter.format(date),orderno);
+				boolean ret2 = goodsMapper.insertOrder(productId, productNum, goods.getPrice(), user.getUserId(), goods.getSeller_id(), addressname, formatter.format(date),orderno,color,size);
 				map.put("orderno",orderno);
 				map.put("price",goods.getPrice()*productNum);
 				ShoppingCart shoppingCart = new ShoppingCart();

@@ -33,7 +33,7 @@ public class GoodsServiceImpl implements GoodsService {
 
 	@Override
 	@Transactional
-	public Map<String,Object> immediateBuy(int addressId, int productId, int productNum) {
+	public Map<String,Object> immediateBuy(int addressId, int productId, int productNum,String color,String size) {
 		// TODO Auto-generated method stub
 		//获取货物信息
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -53,7 +53,7 @@ public class GoodsServiceImpl implements GoodsService {
 			Date date = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String orderno = new String(DateUtils.formatDateToString(new Date(),DateUtils.DATE_FORMAT_YMDHMS));
-			ret2 = goodsMapper.insertOrder(productId, productNum, goods.getPrice(), user.getUserId(), goods.getSeller_id(), addressname,formatter.format(date),orderno);
+			ret2 = goodsMapper.insertOrder(productId, productNum, goods.getPrice(), user.getUserId(), goods.getSeller_id(), addressname,formatter.format(date),orderno,color,size);
 			map.put("orderno",orderno);
 			map.put("price",productNum*goods.getPrice());
 		}

@@ -18,7 +18,8 @@ public class Order implements Serializable {
  	private int logisticId;
 	private int status;
 	private String orderno;//订单号
-
+	private String color;
+	private String size;
 	private String productName;    // 商品名称
 	private String comName;    // 物流公司名
 	public String getProductName() {
@@ -101,7 +102,21 @@ public class Order implements Serializable {
 		this.status = status;
 	}
 
+	public String getSize() {
+		return size;
+	}
 
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 	public String getOrderno() {
 		return orderno;
 	}

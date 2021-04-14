@@ -14,7 +14,11 @@
 
 </head>
 <body>
-
+<STYLE>
+	.layui-select-title input{
+		width: 60px !important;
+	}
+</STYLE>
 <script type="text/javascript">
 
 layui.use(['form', 'jquery','layer'], function(){
@@ -62,6 +66,8 @@ layui.use(['form', 'jquery','layer'], function(){
 	  form.on('submit(insertCate)', function(data){	 
 			var productId=id;
 			var price=$("#youhuijia").text();
+          var color=$("#color").val();
+          var size=$("#size").val();
 		  var num=document.getElementById("num").value;
           var shengyv = $("#shengyv").text();
           if(Number(shengyv)<Number(num)){
@@ -69,7 +75,7 @@ layui.use(['form', 'jquery','layer'], function(){
               return
           }
 		  //加入购物车
-		  $.post('../../user/saveShoppingCart',{'productId':productId,'price':price,'num':num} , function(flag) {
+		  $.post('../../user/saveShoppingCart',{'productId':productId,'price':price,'num':num,'color':color,'size':size} , function(flag) {
 			 // console.log(data);
 			 layer.msg("加入成功");
 			})
@@ -84,11 +90,13 @@ layui.use(['form', 'jquery','layer'], function(){
           var productId=id;
           var productNum=document.getElementById("num").value;
 		  var shengyv = $("#shengyv").text();
+          var color=$("#color").val();
+          var size=$("#size").val();
 		  if(Number(shengyv)<Number(productNum)){
 		      layer.msg("商品数量不足")
 			  return
 		  }
-          var url = "postMoney.html?productIds="+productId+"&productNums="+productNum+"&type=0";//此处拼接内容
+          var url = "postMoney.html?productIds="+productId+"&productNums="+productNum+"&color="+color+"&size="+size+"&type=0";//此处拼接内容
           window.location.href = url
 		  return
 		});
@@ -151,15 +159,38 @@ layui.use(['form', 'jquery','layer'], function(){
 					销量<span><big><b id="xiaoliang"></b></big></span> 	
 				</p>
 				<div class="layui-form">
-				<div class="number layui-form">				
-					<label>数量</label>
-					<div class="layui-input-inline btn-input">
-						<button class="layui-btn layui-btn-primary sup">-</button>
-						<input id="num" name="num" type="text" class="layui-input">
-						<button class="layui-btn layui-btn-primary sub">+</button>
+					<div class="number">
+						<label>数量</label>
+						<div class="layui-input-inline btn-input">
+							<button class="layui-btn layui-btn-primary sup">-</button>
+							<input id="num" name="num" type="text" class="layui-input">
+							<button class="layui-btn layui-btn-primary sub">+</button>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<label>颜色</label>
+						<div class="layui-input-inline btn-input " >
+							<select id="color" name="color"   class="layui-input">
+								<option selected value="红">红</option>
+								<option value="橙">橙</option>
+								<option value="黄">黄</option>
+								<option value="绿">绿</option>
+								<option value="蓝">蓝</option>
+								<option value="青">青</option>
+								<option value="紫">紫</option>
+								<option value="白">白</option>
+							</select>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<label>尺寸</label>
+						<div class="layui-input-inline btn-input">
+							<select id="size" name="size"   class="layui-input">
+								<option selected value="大">大</option>
+								<option value="中">中</option>
+								<option value="小">小</option>
+							</select>
+						</div>
+						<p class="inputTips">已超出库存数量！</p>
 					</div>
-					<p class="inputTips">已超出库存数量！</p>
-				</div>
 				<div class="shopBtn">
 					<button class="layui-btn layui-btn-primary sale" lay-submit lay-filter="insertOrder" id="insertOrder">立即购买</button>
 					<button class="layui-btn shop" lay-submit lay-filter="insertCate">
@@ -189,7 +220,7 @@ layui.use(['form', 'jquery','layer'], function(){
 						<a href="about.html">配送服务</a>
 <!--						<a href="about.html">关于货源</a>-->
 					</span>
-					<p>商城版权所有 &copy; 2012-2020</p>
+					<p>商城版权所有 &copy; 2019-2022</p>
 				</div>
 			</div>
 		</div>

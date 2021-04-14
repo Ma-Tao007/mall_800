@@ -81,7 +81,9 @@
 						
 						if(order.logisticId <= 0){
 							layer.msg("请选择物流公司");
-						}else{
+                        }else if(order.sellerAddr==null || order.sellerAddr==""){
+                            layer.msg("请输入发货地址");
+                        }else{
 							order.status=1;
 							$.ajax({  // 发货--修改订单状态
 								url: '../order/updateOrder',
@@ -181,6 +183,12 @@
 					field : 'price',
 					title : '商品单价'
 				}, {
+                        field : 'color',
+                        title : '颜色'
+                    }, {
+                        field : 'size',
+                        title : '大小'
+                    }, {
 					field : 'buyerId',
 					title : '买家ID'
 				}, {
@@ -195,7 +203,7 @@
 					title : '买家收货地址'
 				}, {
 					field : 'sellerAddr',
-					title : '卖家收货地址'
+					title : '卖家发货地址'
 				}, {
 					field : 'logisticId',
 					title : '物流公司ID',

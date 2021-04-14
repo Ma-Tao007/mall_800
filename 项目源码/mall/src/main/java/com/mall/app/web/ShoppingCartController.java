@@ -54,18 +54,18 @@ public class ShoppingCartController {
 
 	//直接购买
 	@RequestMapping("/user/immediateBuy")
-	public Map<String, Object>   immediateBuy(int addressId,int productId,int productNum){
+	public Map<String, Object>   immediateBuy(int addressId,int productId,int productNum,String color,String size){
 		System.out.println("----------------------------");
 		System.out.println(addressId);
 		System.out.println("----------------------------");
-		return goodsService.immediateBuy(addressId, productId, productNum);
+		return goodsService.immediateBuy(addressId, productId, productNum,color,size);
 	}
 
 	//购物车支付
 	@RequestMapping("/user/emptyShoppingcart")
-	public Map<String, Object>   emptyShoppingcart(int addressId, String productIds, String productNums){
+	public Map<String, Object>   emptyShoppingcart(int addressId, String productIds, String productNums,String color,String size){
 		System.out.println(addressId+"  "+productIds+"  "+productNums);
-		return shoppingCartService.emptyShoppingcart(addressId, productIds, productNums);
+		return shoppingCartService.emptyShoppingcart(addressId, productIds, productNums,color,size);
 	}
 
 
