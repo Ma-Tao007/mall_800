@@ -35,6 +35,10 @@
 			table.on('tool(test)', function(obj) {
 				var order = obj.data;
 				if (obj.event === 'edit') {
+				    if(obj.data.status!=0){
+						layer.msg("商品已发货，无法修改")
+						return
+					}
 					//编写修改对话框
 					layer.open({
 						title : '修改',
@@ -57,6 +61,9 @@
 						"logisticId" : order.logisticId,
 						"comName" : order.comName,
 						"status" : order.status,
+						"size" : order.size,
+						"color" : order.color,
+						"usermsg" : order.usermsg,
 						"buyerAddrName":order.buyerAddrName
 					});
 					// 获取下拉框的值
@@ -72,33 +79,37 @@
 						}
 					});
 				}else if(obj.event == 'deliver'){    // 发货
-					console.log(order.status);
+
+
 					if(order.status == 2 ){  // 2--已签收
 						layer.msg("买家已签收");
 					}else if(order.status == 1 ){  // 1--已发货
 						layer.msg("此订单已发货");
 					}else if(order.status == 0 ){  // 0--未发货
-						
-						if(order.logisticId <= 0){
-							layer.msg("请选择物流公司");
-                        }else if(order.sellerAddr==null || order.sellerAddr==""){
-                            layer.msg("请输入发货地址");
-                        }else{
-							order.status=1;
-							$.ajax({  // 发货--修改订单状态
-								url: '../order/updateOrder',
-								type: 'post',
-								data: order,
-								success:function(flag){
-									layer.msg("发货成功");
-									table.reload('dg', {});//刷新表格
-								},
-								error:function(flag){
-									console.log(flag);
-								}
-							});
-						}
-	
+                        if(order.usermsg!="" && order.usermsg!=null){
+                            layer.confirm('当前订单有换货信息，是否发货', {icon: 3, title:'提示'}, function(index){
+                                if(order.logisticId <= 0){
+                                    layer.msg("请选择物流公司");
+                                }else if(order.sellerAddr==null || order.sellerAddr==""){
+                                    layer.msg("请输入发货地址");
+                                }else{
+                                    order.status=1;
+                                    $.ajax({  // 发货--修改订单状态
+                                        url: '../order/updateOrder',
+                                        type: 'post',
+                                        data: order,
+                                        success:function(flag){
+                                            layer.msg("发货成功");
+                                            table.reload('dg', {});//刷新表格
+                                        },
+                                        error:function(flag){
+                                            console.log(flag);
+                                        }
+                                    });
+                                }
+                                layer.close(index);
+                            });
+                        }
 					}
 				}
 			});
@@ -188,6 +199,9 @@
                     }, {
                         field : 'size',
                         title : '大小'
+                    }, {
+                        field : 'usermsg',
+                        title : '换货申请'
                     }, {
 					field : 'buyerId',
 					title : '买家ID'
@@ -309,7 +323,18 @@
 					placeholder="请输入卖家发货地址" class="layui-input"> 
 			</div>
 		</div>
-		
+			<div class="layui-form-item">
+				<label class="layui-form-label">尺寸</label>
+				<div class="layui-input-inline">
+					<input type="text" name="size" required lay-verify="required"
+						   placeholder="请输入尺寸" class="layui-input">
+				</div>
+				<label class="layui-form-label">颜色</label>
+				<div class="layui-input-inline">
+					<input type="text" name="color" required lay-verify="required"
+						   placeholder="请输入颜色" class="layui-input">
+				</div>
+			</div>
 		<div class="layui-form-item">
             <label class="layui-form-label">物流公司</label>
             <div class="layui-input-inline">
@@ -320,13 +345,17 @@
             </div>
 
 
-			<label class="layui-form-label">订单状态</label>
-			<div class="layui-input-inline">
-				<input type="text" name="status" required lay-verify="required"
-					placeholder="请输入订单状态" class="layui-input"> （0未发货 1已发货 2已签收）
-			</div>
+			<%--<label class="layui-form-label">订单状态</label>--%>
+			<%--<div class="layui-input-inline">--%>
+				<%--<input type="text" name="status" required lay-verify="required"--%>
+					<%--placeholder="请输入订单状态" class="layui-input"> （0未发货 1已发货 2已签收）--%>
+			<%--</div>--%>
 		</div>
-	
+			<label class="layui-form-label">换货申请</label>
+			<div class="layui-input-inline">
+				<input type="text" readonly name="usermsg"
+					  class="layui-input">
+			</div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit lay-filter="edit-submit">保存</button>

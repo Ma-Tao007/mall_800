@@ -43,7 +43,10 @@
 		buyer_addr = #{buyerAddr},
 		seller_addr = #{sellerAddr},
 		logistic_id = #{logisticId},
-		`status` = #{status}
+		`status` = #{status},
+		color = #{color},
+		size = #{size},
+		usermsg = #{usermsg}
 
 		where
 		order_id = #{orderId}
@@ -104,7 +107,7 @@
 		`order`.logistic_id as logisticId,
 		com_name as comName,
 		`status` as status,
-		orderno
+		orderno,color,size,usermsg
 		from `order` , logistic_com,
 		(select DISTINCT product.product_name,product.product_id	from product,`order`
 		 where product.product_id = `order`.product_id) as pp
@@ -142,7 +145,7 @@
 		seller_addr as sellerAddr,
 		`order`.logistic_id as logisticId,
 		`status` as status,
-		orderno
+		orderno,color,size,usermsg
 		from `order` where order_id = #{orderId,jdbcType=INTEGER}
 	</select>
 	<select id="selectRefundById" resultType="com.mall.app.bean.Refund">

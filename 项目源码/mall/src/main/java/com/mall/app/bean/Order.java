@@ -22,6 +22,7 @@ public class Order implements Serializable {
 	private String size;
 	private String productName;    // 商品名称
 	private String comName;    // 物流公司名
+	private String usermsg;
 	public String getProductName() {
 		return productName;
 	}
@@ -123,5 +124,13 @@ public class Order implements Serializable {
 
 	public void setOrderno(String orderno) {
 		this.orderno = orderno;
+	}
+
+	public String getUsermsg() {
+		return usermsg;
+	}
+
+	public void setUsermsg(String usermsg) {
+		this.usermsg = usermsg;
 	}
 }

@@ -17,7 +17,8 @@
 		buyer_addr AS buyerAddr,
 		`order`.seller_addr AS sellerAddr,
 		logistic_id AS logisticId,
-		`status` AS status
+		`status` AS status,
+	  color,size,usermsg
 	FROM
 		`order` 
 	LEFT JOIN
@@ -40,7 +41,8 @@
 		buyer_addr AS buyerAddr,
 		`order`.seller_addr AS sellerAddr,
 		logistic_id AS logisticId,
-		`status` AS status
+		`status` AS status,
+	  color,size,usermsg
 	FROM
 		`order` 
 	LEFT JOIN

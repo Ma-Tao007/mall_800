@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 127.0.0.1
+ Source Server         : 本地
  Source Server Type    : MySQL
- Source Server Version : 50540
+ Source Server Version : 80011
  Source Host           : localhost:3306
  Source Schema         : mall
 
  Target Server Type    : MySQL
- Target Server Version : 50540
+ Target Server Version : 80011
  File Encoding         : 65001
 
- Date: 14/04/2021 22:40:13
+ Date: 15/04/2021 13:59:42
 */
 
 SET NAMES utf8mb4;
@@ -110,31 +110,32 @@ CREATE TABLE `order`  (
   `orderno` varchar(225) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '沙箱支付返回的订单号（退款需要）',
   `color` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `size` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `usermsg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`order_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 78 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (44, 9, 1, 3.50, 13, 3, '2021-03-10 21:37:48', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 2, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (45, 11, 1, 4.00, 13, 3, '2021-03-11 09:14:50', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (46, 14, 1, 6999.00, 13, 3, '2021-03-11 09:14:50', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (47, 14, 1, 6999.00, 13, 3, '2021-03-12 13:52:35', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (48, 14, 1, 6999.00, 13, 3, '2021-03-12 13:52:39', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (49, 14, 1, 6999.00, 13, 3, '2021-03-12 13:53:01', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (50, 14, 1, 6999.00, 13, 3, '2021-03-12 13:53:14', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (51, 14, 1, 6999.00, 13, 3, '2021-03-12 13:54:52', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (52, 10, 1, 4.00, 13, 3, '2021-03-12 13:55:29', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (53, 14, 2, 6999.00, 13, 3, '2021-03-29 18:10:51', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (54, 14, 1, 6999.00, 13, 3, '2021-04-02 10:55:19', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL);
-INSERT INTO `order` VALUES (55, 10, 2, 4.00, 13, 3, '2021-04-02 14:18:38', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 3, '20210402141838082', NULL, NULL);
-INSERT INTO `order` VALUES (56, 15, 1, 433.00, 13, 3, '2021-04-02 15:00:46', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 3, '20210402150046355', NULL, NULL);
-INSERT INTO `order` VALUES (57, 27, 1, 44.00, 13, 4, '2021-04-02 15:26:23', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 3, '20210402152623204', NULL, NULL);
-INSERT INTO `order` VALUES (63, 13, 1, 7000.00, 13, 3, '2021-04-02 15:40:29', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 4, '20210402154029833', NULL, NULL);
-INSERT INTO `order` VALUES (74, 10, 1, 4.00, 13, 3, '2021-04-14 22:31:58', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, '20210414223158526', '红', '大');
-INSERT INTO `order` VALUES (75, 10, 1, 4.00, 13, 3, '2021-04-14 22:32:03', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, '20210414223203069', '红', '大');
-INSERT INTO `order` VALUES (76, 10, 1, 4.00, 13, 3, '2021-04-14 22:32:34', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, '20210414223234817', '红', '大');
-INSERT INTO `order` VALUES (77, 23, 1, 5.00, 13, 4, '2021-04-14 22:34:36', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, '20210414223436742', '红', '大');
+INSERT INTO `order` VALUES (44, 9, 1, 3.50, 13, 3, '2021-03-10 21:37:48', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 2, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (45, 11, 1, 4.00, 13, 3, '2021-03-11 09:14:50', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 1, NULL, '', '', '给我换一个红丝的');
+INSERT INTO `order` VALUES (46, 14, 1, 6999.00, 13, 3, '2021-03-11 09:14:50', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (47, 14, 1, 6999.00, 13, 3, '2021-03-12 13:52:35', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (48, 14, 1, 6999.00, 13, 3, '2021-03-12 13:52:39', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (49, 14, 1, 6999.00, 13, 3, '2021-03-12 13:53:01', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (50, 14, 1, 6999.00, 13, 3, '2021-03-12 13:53:14', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (51, 14, 1, 6999.00, 13, 3, '2021-03-12 13:54:52', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (52, 10, 1, 4.00, 13, 3, '2021-03-12 13:55:29', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (53, 14, 2, 6999.00, 13, 3, '2021-03-29 18:10:51', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (54, 14, 1, 6999.00, 13, 3, '2021-04-02 10:55:19', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `order` VALUES (55, 10, 2, 4.00, 13, 3, '2021-04-02 14:18:38', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 3, '20210402141838082', NULL, NULL, NULL);
+INSERT INTO `order` VALUES (56, 15, 1, 433.00, 13, 3, '2021-04-02 15:00:46', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 3, '20210402150046355', NULL, NULL, NULL);
+INSERT INTO `order` VALUES (57, 27, 1, 44.00, 13, 4, '2021-04-02 15:26:23', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 3, '20210402152623204', NULL, NULL, NULL);
+INSERT INTO `order` VALUES (63, 13, 1, 7000.00, 13, 3, '2021-04-02 15:40:29', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 4, '20210402154029833', NULL, NULL, NULL);
+INSERT INTO `order` VALUES (74, 10, 1, 4.00, 13, 3, '2021-04-14 22:31:58', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, '20210414223158526', '红', '大', NULL);
+INSERT INTO `order` VALUES (75, 10, 1, 4.00, 13, 3, '2021-04-14 22:32:03', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, '20210414223203069', '红', '大', NULL);
+INSERT INTO `order` VALUES (76, 10, 1, 4.00, 13, 3, '2021-04-14 22:32:34', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, '20210414223234817', '红', '大', NULL);
+INSERT INTO `order` VALUES (77, 23, 1, 5.00, 13, 4, '2021-04-14 22:34:36', '陕西省西安市未央区恶事地址啊', '陕西省西安市未央区恶事地址啊', 1, 0, '20210414223436742', '红', '大', NULL);
 
 -- ----------------------------
 -- Table structure for product

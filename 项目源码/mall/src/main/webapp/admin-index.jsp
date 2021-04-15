@@ -50,7 +50,7 @@
 
 				</ul>
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
-					<li class="layui-nav-item"><a class="" href="javascript:;">物流信息管理</a>
+					<li class="layui-nav-item"><a class="" href="javascript:;">物流管理</a>
 						<dl class="layui-nav-child">
 							<dd>
 								<a href="javascript:;" data-id="5" data-title="物流信息管理"
@@ -62,7 +62,7 @@
 
 				</ul>
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
-					<li class="layui-nav-item"><a class="" href="javascript:;">客户信息管理</a>
+					<li class="layui-nav-item"><a class="" href="javascript:;">客户管理</a>
 						<dl class="layui-nav-child">
 							<dd>
 								<a href="javascript:;" data-id="6" data-title="客户信息管理"

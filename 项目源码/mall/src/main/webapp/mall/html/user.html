@@ -160,11 +160,18 @@
 	<a class="handel" lay-event="evaluate" style="color: #e39d55; cursor: pointer; display: block;">收货</a>
 	{{# }else if(d.status == 2){ }}
     <a class="handel" lay-event="refund" style="color: #5596e3; cursor: pointer; display: block;">申请退款</a>
+    {{# }else if(d.status == 0){ }}
+    <a class="handel" lay-event="setOrder" style="color: #5596e3; cursor: pointer; display: block;">申请换货</a>
     {{# } }}
 
   </div>
 </script>
-
+<div class="layui-upload" id="upload_order" style="width:400px;height:200px;display: none" align="center">
+    <div class="layui-upload-list">
+        <textarea placeholder="请输入换货需求"  class="layui-textarea" id="usermsg" name="usermsg"></textarea>
+    </div>
+    <button type="button" class="layui-btn" id="test2">确定</button>
+</div>
     <div class="layui-upload" id="upload_img" style="width:300px;height:300px;display: none" align="center">
         <div class="layui-upload-list">
             <img class="layui-upload-img" src="../res/static/img/person.png" align="middle" width=200px height=200px id="demo1">

@@ -31,7 +31,7 @@
 		<div class="layui-side layui-bg-black">
 			<div class="layui-side-scroll">
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
-					<li class="layui-nav-item"><a class="" href="javascript:;">订单信息管理</a>
+					<li class="layui-nav-item"><a class="" href="javascript:;">订单管理</a>
 						<dl class="layui-nav-child">
 							<dd>
 								<a href="javascript:;" data-id="4" data-title="订单信息管理"
@@ -43,7 +43,7 @@
 
 				</ul>
 				<ul class="layui-nav layui-nav-tree" lay-filter="test">
-					<li class="layui-nav-item"><a class="" href="javascript:;">物流信息管理</a>
+					<li class="layui-nav-item"><a class="" href="javascript:;">物流管理</a>
 						<dl class="layui-nav-child">
 							<dd>
 								<a href="javascript:;" data-id="5" data-title="物流信息管理"

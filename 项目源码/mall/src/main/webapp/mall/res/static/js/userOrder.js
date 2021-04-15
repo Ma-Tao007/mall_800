@@ -1,3 +1,4 @@
+var orderObj;
 layui.use(["jquery","table","element"],function(){
 	//个人中心——订单
 	var table = layui.table;
@@ -63,6 +64,18 @@ layui.use(["jquery","table","element"],function(){
                 }
             })
 
+        }else if(obj.event === 'setOrder'){
+            //换货
+            orderObj = obj.data;
+            $("#usermsg").val(obj.data.usermsg)
+            layer.open({
+                type : 1,
+                title : '换货申请',
+                shade : 0,
+                maxmin : true,
+                offset : 'auto',
+                content : $('#upload_order'),
+            });
         }
     });
 	  //已发货
@@ -211,6 +224,7 @@ layui.use(["jquery","table","element"],function(){
         }else if(obj.event === 'refund'){
             //申请退款
 			var orderId = obj.data.orderId
+
             $.ajax({
                 url:"/order/refund",
                 type:"post",
@@ -225,6 +239,27 @@ layui.use(["jquery","table","element"],function(){
             })
         }
     });
+    $("#test2").click(function() {
+        //换货数据
+        var usermsg = $("#usermsg").val()
+        if (usermsg == "") {
+            layer.msg("请输入换货说明")
+            return
+        }
+        //数据
+        orderObj.usermsg = usermsg
+        $.ajax({
+            url: "/order/updateOrder",
+            type: "post",
+            data: orderObj,
+            success: function (flag) {
+                layer.msg('提交成功');
+                setTimeout(function(){
+                    window.location.reload();
+                },2000)
+            }
+        })
+    })
 	  table.on('tool(house-user-order)', function(obj){
 		  
 	    if(obj.event === 'check'){
@@ -281,6 +316,18 @@ layui.use(["jquery","table","element"],function(){
                     window.location.reload();
                 }
             })
+        }else if(obj.event === 'setOrder'){
+            //换货
+            orderObj = obj.data;
+            $("#usermsg").val(obj.data.usermsg)
+            layer.open({
+                type : 1,
+                title : '换货申请',
+                shade : 0,
+                maxmin : true,
+                offset : 'auto',
+                content : $('#upload_order'),
+            });
         }
 	  });
 })
