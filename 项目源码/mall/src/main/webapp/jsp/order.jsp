@@ -109,7 +109,21 @@
                                 }
                                 layer.close(index);
                             });
-                        }
+                        }else{
+                            order.status=1;
+                            $.ajax({  // 发货--修改订单状态
+                                url: '../order/updateOrder',
+                                type: 'post',
+                                data: order,
+                                success:function(flag){
+                                    layer.msg("发货成功");
+                                    table.reload('dg', {});//刷新表格
+                                },
+                                error:function(flag){
+                                    console.log(flag);
+                                }
+                            });
+						}
 					}
 				}
 			});
